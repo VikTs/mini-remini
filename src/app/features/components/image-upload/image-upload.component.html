@@ -1,0 +1,24 @@
+<div class="container" appImageUpload>
+    <div class="image-slider">
+        <app-image-slider [beforeImage]="demoImagePath" [afterImage]="demoImagePath"
+            [afterImageFilter]="demoImageFilter" imageObjectFit="cover"></app-image-slider>
+    </div>
+    <div class="image-upload-section">
+        <h1 class="title h1"> {{"upload.title" | translate}}</h1>
+        <p class="subtitle text"> {{"upload.subtitle" | translate}}</p>
+        <mat-card class="image-upload-card" (click)="imgInput.click();">
+            <mat-card-content class="image-upload-card-content">
+                <input type="file" accept="image/*" #imgInput style="display: none;" (change)="onUploadImage($event)" />
+                <button class="btn image-upload-btn">
+                    <mat-icon class="icon">add_photo_alternate</mat-icon> {{"upload.button_label" | translate}}
+                </button>
+                <p class="text">{{"upload.upload_info1" | translate}} </p>
+                <p class="text small">{{"upload.upload_info2" | translate}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="drop-zone">
+        <mat-icon class="image-upload-icon">cloud_upload</mat-icon>
+        <h3 class="h3">{{"upload.drop_image_message" | translate}}</h3>
+    </div>
+</div>

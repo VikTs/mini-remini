@@ -1,0 +1,69 @@
+{
+  "common": {
+    "apply": "Apply",
+    "home": "Home",
+    "retry": "Retry",
+    "ok": "Ok",
+    "before": "Before",
+    "after": "After"
+  },
+  "dialog": {
+    "error_title": "Something went wrong",
+    "error_message": "Please try again later"
+  },
+  "upload": {
+    "title": "Apply filters to your image",
+    "subtitle": "You can upload, edit image and check the result. Downloading the final image is currently unavailable.",
+    "button_label": "Upload image",
+    "upload_info1": "or drop it here",
+    "upload_info2": "*Only images are supported",
+    "drop_image_message": "Drop your image here",
+    "type_error": {
+      "title": "Incorrect file type",
+      "message": "Please try to upload another image"
+    }
+  },
+  "processing": {
+    "uploading": {
+      "title": "Uploading the image ...",
+      "subtitle": "Immitation of sending the image to remote service"
+    },
+    "enhancing": {
+      "title": "Enhancing the image ...",
+      "subtitle": "Immitation of handling the image by AI"
+    },
+    "done": {
+      "title": "Image is ready",
+      "subtitle": "It will be available in a moment"
+    },
+    "error": {
+      "title": "Something went wrong",
+      "subtitle": "We couldn`t process your image. Please try again or back to home"
+    }
+  },
+  "filtersPanel": {
+    "title": "Toolbar",
+    "filters": {
+      "brightness": "Brightness",
+      "contrast": "Contrast",
+      "grayscale": "Grayscale",
+      "saturate": "Saturation",
+      "sepia": "Sepia"
+    },
+    "groups": {
+      "color": {
+        "name": "Color & Tone",
+        "description": "Change the color"
+      },
+      "lighting": {
+        "name": "Lighting & Exposure",
+        "description": "Regulate light"
+      }
+    }
+  },
+  "result": {
+    "new_upload_label": "New upload",
+    "width_label": "Width",
+    "height_label": "Height"
+  }
+}

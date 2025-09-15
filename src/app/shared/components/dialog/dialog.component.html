@@ -1,0 +1,8 @@
+<h2 class="h2" *ngIf="data.title as title" mat-dialog-title>{{title| translate}}</h2>
+<mat-dialog-content class="text">
+    {{data.message| translate}}
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="btn primary" matButton mat-dialog-close cdkFocusInitial>{{"common.ok" | translate}}
+    </button>
+</mat-dialog-actions>

@@ -1,0 +1,31 @@
+<div class="container">
+    <ng-container [ngSwitch]="currentStep$ | async">
+        <div *ngSwitchCase="ProcessStepEnum.Uploading" class="processing-step">
+            <h2 class="h2">{{'processing.uploading.title' | translate}}</h2>
+            <p class="text">{{'processing.uploading.subtitle' | translate}}</p>
+        </div>
+        <div *ngSwitchCase="ProcessStepEnum.Enhancing" class="processing-step">
+            <h2 class="h2">{{'processing.enhancing.title' | translate}}</h2>
+            <p class="text">{{'processing.enhancing.subtitle' | translate}}</p>
+        </div>
+        <div *ngSwitchCase="ProcessStepEnum.Done" class="processing-step">
+            <mat-icon class="icon-done">done_outline</mat-icon>
+            <h2 class="h2">{{'processing.done.title' | translate}}</h2>
+            <p class="text">{{'processing.done.subtitle' | translate}}</p>
+        </div>
+        <div *ngSwitchCase="ProcessStepEnum.Error" class="processing-step">
+            <h2 class="h2">{{'processing.error.title' | translate}}</h2>
+            <p class="text">{{'processing.error.subtitle' | translate}}</p>
+            <div class="actions">
+                <button (click)="processImage()" class="btn primary">
+                    <mat-icon class="icon">refresh</mat-icon>
+                    {{"common.retry" | translate}}
+                </button>
+                <button routerLink="/" class="btn secondary">
+                    <mat-icon class="icon">home</mat-icon>
+                    {{"common.home" | translate}}
+                </button>
+            </div>
+        </div>
+    </ng-container>
+</div>
