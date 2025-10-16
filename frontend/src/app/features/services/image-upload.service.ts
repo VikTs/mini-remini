@@ -5,7 +5,6 @@ import { ImageStore } from "../../store/image/image-store";
 import { Router } from "@angular/router";
 import { DialogService } from "../../shared/services/dialog.service";
 
-// ToDo: move file conversion to BE (POST /upload)
 @Injectable({
     providedIn: 'root',
 })

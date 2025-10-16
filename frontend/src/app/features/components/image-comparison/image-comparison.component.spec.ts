@@ -33,15 +33,6 @@ describe('ImageComparisonComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should get correct filter string from filters$', (done) => {
-        component.afterImageFilter$.subscribe({
-            next: (filterStr) => {
-                expect(filterStr).toBe("sepia(1)");
-                done();
-            }
-        })
-    });
-
     it('should render image-slider component', () => {
         const slider = fixture.nativeElement.querySelector("app-image-slider");
         expect(slider).toBeTruthy();

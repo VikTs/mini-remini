@@ -1,7 +1,7 @@
 <div class="container" (mousemove)="onDrag($event)" (touchmove)="onDrag($event)">
     <img [src]="beforeImage" alt="Before" class="image before" [style.clipPath]="clipPath"
         [style.objectFit]="imageObjectFit" />
-    <img [src]="afterImage" alt="After" class="image after" [style.filter]="afterImageFilter"
+    <img [src]="afterImage" alt="After" class="image after"
         [style.objectFit]="imageObjectFit" />
 
     <div class="slider-line" [style.left.%]="sliderValue">

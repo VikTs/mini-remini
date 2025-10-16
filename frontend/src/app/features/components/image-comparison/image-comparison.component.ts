@@ -22,7 +22,6 @@ export class ImageComparisonComponent implements OnInit {
   isLoading$!: Observable<boolean>;
   beforeImage$!: Observable<string | null>;
   afterImage$!: Observable<string | null>;
-  afterImageFilter$!: Observable<string>;
 
   constructor(private imageStore: ImageStore) { }
 
@@ -30,10 +29,6 @@ export class ImageComparisonComponent implements OnInit {
     this.beforeImage$ = this.imageStore.originalImage$;
     this.afterImage$ = this.imageStore.enhancedImage$;
     this.isLoading$ = this.imageStore.isApplyingFilters$;
-
-    this.afterImageFilter$ = this.imageStore.filters$.pipe(
-      map((filters: ImageFilters) => this.getFilterAsString(filters))
-    );
   }
 
   getFilterAsString(filters: ImageFilters): string {

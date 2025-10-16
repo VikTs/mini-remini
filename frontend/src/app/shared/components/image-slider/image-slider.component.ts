@@ -21,10 +21,6 @@ export class ImageSliderComponent {
   @Input() isLoading: boolean | null = false;
   @Input() imageObjectFit = "contain";
 
-  // It is a temporary solution for applying filters with css
-  // ToDo: remove after the real API for filtering is ready
-  @Input() afterImageFilter: string | null = "";
-
   sliderValue = 50;
   sliderThumbDiameter = 30;
 

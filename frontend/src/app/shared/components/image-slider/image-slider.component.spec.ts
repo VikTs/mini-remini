@@ -18,7 +18,6 @@ describe('ImageSliderComponent', () => {
     component.beforeImage = "data:image/png";
     component.afterImage = "data:image/png";
     component.sliderValue = 30;
-    component.afterImageFilter = "sepia()";
 
     fixture.detectChanges();
   });
