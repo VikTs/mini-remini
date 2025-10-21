@@ -26,11 +26,11 @@
   "processing": {
     "uploading": {
       "title": "Uploading the image ...",
-      "subtitle": "Immitation of sending the image to remote service"
+      "subtitle": "Sending the image to remote service"
     },
     "enhancing": {
       "title": "Enhancing the image ...",
-      "subtitle": "Immitation of handling the image by AI"
+      "subtitle": "Handling the image by AI. This can take some time"
     },
     "done": {
       "title": "Image is ready",

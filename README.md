@@ -2,7 +2,7 @@
 ![Angular](https://img.shields.io/badge/Angular-20.3-red)
 ![NodeJs](https://img.shields.io/badge/NodeJs-22.19-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-green)
-![Python](https://img.shields.io/badge/Python-3.14-blue)
+![Python](https://img.shields.io/badge/Python-3.10-blue)
 
 Mini-Remini is a web application for adding filters to the image. It was inspired by [Remini](https://app.remini.ai/).
 
@@ -56,7 +56,7 @@ The project is built with Angular 20 and uses the modern architecture optimized 
 
 - [NodeJs 22+](https://nodejs.org)
 - [Angular CLI 17+](https://angular.dev/tools/cli)
-- [Python 3.10+](https://www.python.org/downloads/)
+- [Python 3.10](https://www.python.org/downloads/release/python-3109/)
 
 ### Installation and launching
 
@@ -75,18 +75,29 @@ Terminal 2
 - Windows
 ```bash
 cd mini-remini/backend
+
 python -m venv venv
-./venv/Scripts/activate.bat
+./venv/Scripts/Activate.ps1
+
 pip install -r requirements.txt
-./app/start.bat
+
+Invoke-WebRequest -Uri "https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth" -OutFile "experiments/pretrained_models/AI_model.pth"
+
+cd app
+./start.bat
 ```
 
-- Linux/MacOS
+- Linux/MacOS (wasn't tested)
 ```bash
 cd mini-remini/backend
+
 python3 -m venv venv
 source venv/bin/activate
+
 pip install -r requirements.txt
+
+wget https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth -P experiments/pretrained_models/AI_model.pth
+
 uvicorn main:app --reload
 ```
 
