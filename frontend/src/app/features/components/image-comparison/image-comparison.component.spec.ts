@@ -37,10 +37,4 @@ describe('ImageComparisonComponent', () => {
         const slider = fixture.nativeElement.querySelector("app-image-slider");
         expect(slider).toBeTruthy();
     });
-
-    it('getFilterAsString should format string correctly', () => {
-        const filters = { sepia: 1, contrast: 0.8};
-        const result = component.getFilterAsString(filters);
-        expect(result).toBe("sepia(1) contrast(0.8)");
-    });
 });

@@ -60,8 +60,8 @@ describe('ImageUploadService', () => {
         expect(imageStoreMock.setOriginalImage).not.toHaveBeenCalled();
         expect(ImageUtils.validateImageFile).toHaveBeenCalledWith(invalidFileMock);
         expect(dialogServiceMock.openErrorDialog).toHaveBeenCalledWith({
-            title: "upload.type_error.title",
-            message: "upload.type_error.message"
+            title: "upload.upload_error.title",
+            message: "upload.upload_error.message"
         });
         expect(routerMock.navigate).not.toHaveBeenCalled();
     });

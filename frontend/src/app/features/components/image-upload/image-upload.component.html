@@ -1,8 +1,4 @@
 <div class="container" appImageUpload>
-    <div class="image-slider">
-        <app-image-slider [beforeImage]="demoImagePath" [afterImage]="demoImagePath"
-            imageObjectFit="cover"></app-image-slider>
-    </div>
     <div class="image-upload-section">
         <h1 class="title h1"> {{"upload.title" | translate}}</h1>
         <p class="subtitle text"> {{"upload.subtitle" | translate}}</p>
@@ -12,8 +8,9 @@
                 <button class="btn image-upload-btn">
                     <mat-icon class="icon">add_photo_alternate</mat-icon> {{"upload.button_label" | translate}}
                 </button>
-                <p class="text">{{"upload.upload_info1" | translate}} </p>
-                <p class="text small">{{"upload.upload_info2" | translate}}</p>
+                <p class="text">{{"upload.drag_info" | translate}} </p>
+                <p class="text small upload-info">{{"upload.upload_info1" | translate}} </p>
+                <p class="text small upload-info">{{"upload.upload_info2" | translate}}</p>
             </mat-card-content>
         </mat-card>
     </div>

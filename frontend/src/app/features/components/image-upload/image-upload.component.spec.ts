@@ -1,8 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
-import { Router } from '@angular/router';
 import { ImageStore } from '../../../store/image/image-store';
-import { ImageUtils } from '../../../shared/utils/image.utils';
 import { TranslateTestModule } from '../../../testing/translate-test.module';
 import { ImageUploadComponent } from './image-upload.component';
 import { ImageUploadService } from '../../services/image-upload.service';

@@ -1,6 +1,13 @@
 <div class="container">
     <div class="header">
         <button class="btn secondary home-btn" routerLink="/"><mat-icon class="icon">home</mat-icon></button>
+        <div class="download" *ngIf="resultImage$ | async as image">
+            <a [href]="image" download="enhanced-image.png" style="display: none;" class="download-link" #imgDownload></a>
+            <button class="btn primary" (click)="imgDownload.click();" class="download-btn">
+                {{"result.download_label" | translate}}
+                <mat-icon class="icon">download</mat-icon>
+            </button>
+        </div>
     </div>
     <div class="content">
         <div class="image-filters-section">

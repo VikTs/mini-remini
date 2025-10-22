@@ -37,8 +37,11 @@ export const ImageUtils = {
         if (!file) { return false; }
 
         const validTypes = ['image/'];
-        const hasValidType = validTypes.some(type => file.type.startsWith(type));
+        const maxSize = 5 * 1024 * 1024; // 5 MB
 
-        return hasValidType;
+        const hasValidType = validTypes.some(type => file.type.startsWith(type));
+        const hasAllowedSize = file.size < maxSize;
+
+        return hasValidType && hasAllowedSize;
     }
 }

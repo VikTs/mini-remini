@@ -12,14 +12,15 @@
     "error_message": "Please try again later"
   },
   "upload": {
-    "title": "Apply filters to your image",
-    "subtitle": "You can upload, edit image and check the result. Downloading the final image is currently unavailable.",
+    "title": "Enhance your image",
+    "subtitle": "You can upload, edit image and compare the result.",
     "button_label": "Upload image",
-    "upload_info1": "or drop it here",
-    "upload_info2": "*Only images are supported",
+    "drag_info": "or drop it here",
+    "upload_info1": "*Only images are supported",
+    "upload_info2": "*Maximum size: 5MB",
     "drop_image_message": "Drop your image here",
-    "type_error": {
-      "title": "Incorrect file type",
+    "upload_error": {
+      "title": "Invalid file type or size",
       "message": "Please try to upload another image"
     }
   },
@@ -63,6 +64,7 @@
   },
   "result": {
     "new_upload_label": "New upload",
+    "download_label": "Download",
     "width_label": "Width",
     "height_label": "Height"
   }

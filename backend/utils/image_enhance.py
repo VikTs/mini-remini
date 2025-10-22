@@ -3,11 +3,11 @@ from PIL import Image
 import numpy as np
 from utils.base64 import decode_base64_to_img, encode_img_to_base64
 from gfpgan import GFPGANer
-from config import MODEL_PATH
+from config import MODEL_LOCAL_PATH
 
 def enhance_image(image: str, filters: Dict[str, float]):
     gfpgan_model = GFPGANer(
-        model_path=MODEL_PATH,
+        model_path=MODEL_LOCAL_PATH,
         upscale = filters.get("upscale", 2),
         arch = filters.get("arch", "clean"),
         channel_multiplier = filters.get("channel_multiplier", 2),

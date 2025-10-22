@@ -6,5 +6,5 @@
 venv/
 
 # AI models files
-app/gfpgan
-experiments/pretrained_models/*.pth
+gfpgan
+pretrained_models/*.pth

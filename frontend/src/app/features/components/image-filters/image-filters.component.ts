@@ -30,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class ImageFiltersComponent implements OnInit {
   form!: FormGroup;
   isDisabled$!: Observable<boolean>;
+  resultImage$!: Observable<string | null>;
   filtersConfig = filtersConfig;
 
   constructor(
@@ -39,6 +40,7 @@ export class ImageFiltersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.resultImage$ = this.imageStore.enhancedImage$;
     this.imageStore.filters$
       .pipe(take(1))
       .subscribe({

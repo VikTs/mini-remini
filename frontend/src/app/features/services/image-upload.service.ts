@@ -31,8 +31,8 @@ export class ImageUploadService {
                 });
         } else {
             this.dialogService.openErrorDialog({
-                title: "upload.type_error.title",
-                message: "upload.type_error.message"
+                title: "upload.upload_error.title",
+                message: "upload.upload_error.message"
             })
         }
     }

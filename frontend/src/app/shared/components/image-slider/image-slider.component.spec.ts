@@ -42,11 +42,6 @@ describe('ImageSliderComponent', () => {
     expect(beforeImage.style.clipPath).toBe("inset(0px 70% 0px 0px)");
   });
 
-  it('should apply filter to after image', () => {
-    const afterImage = fixture.debugElement.query(By.css('img.after')).nativeElement;
-    expect(afterImage.style.filter).toBe("sepia()");
-  });
-
   it('should move slider line to sliderValue', () => {
     const sliderLine = fixture.debugElement.query(By.css('.slider-line')).nativeElement;
     expect(sliderLine.style.left).toBe("30%");

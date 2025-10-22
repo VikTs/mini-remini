@@ -8,6 +8,7 @@ import { ImageStore } from '../../../store/image/image-store';
 import { DialogService } from '../../../shared/services/dialog.service';
 import { ImageUtils } from '../../../shared/utils/image.utils';
 import { ImageUploadService } from '../../services/image-upload.service';
+import { By } from '@angular/platform-browser';
 
 describe('ImageResultComponent', () => {
     let component: ImageResultComponent;
@@ -53,6 +54,20 @@ describe('ImageResultComponent', () => {
         });
         tick();
         expect(result).toEqual({ width: 600, height: 200 });
+    }));
+
+    it('should trigger anchor click when download button is clicked', fakeAsync(() => {
+        const testUrl = "data:image/png";
+        component.resultImage$ = of(testUrl);
+        fixture.detectChanges();
+
+        const anchor = fixture.debugElement.query(By.css('.download-link'));
+        const clickSpy = spyOn(anchor.nativeElement, 'click');
+
+        const downloadButton = fixture.debugElement.query(By.css('.download-btn')).nativeElement;
+        downloadButton.click();
+
+        expect(clickSpy).toHaveBeenCalled();
     }));
 
     it('should call handleImageUpload', () => {

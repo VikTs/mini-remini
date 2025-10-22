@@ -9,8 +9,16 @@ describe('imageUtils', () => {
             const fileMock = new File([''], 'text.txt', { type: "text/plain" });
             expect(ImageUtils.validateImageFile(fileMock)).toBeFalse();
         });
-        it("should return false for image file", () => {
-            const fileMock = new File([''], 'image.jpg', { type: "image/jpg" });
+        it("should return false for file size > 5MB", () => {
+            const fileMock = new File(['a'.repeat(6 * 1024 * 1024)], 'text.txt', { type: "text/plain" });
+            expect(ImageUtils.validateImageFile(fileMock)).toBeFalse();
+        });
+        it("should return false for non-image file", () => {
+            const fileMock = new File([''], 'text.txt', { type: "text/plain" });
+            expect(ImageUtils.validateImageFile(fileMock)).toBeFalse();
+        });
+        it("should return true for image file", () => {
+            const fileMock = new File(['a'.repeat(1024)], 'image.jpg', { type: "image/jpg" });
             expect(ImageUtils.validateImageFile(fileMock)).toBeTrue();
         })
     });

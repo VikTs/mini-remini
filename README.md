@@ -1,122 +1,51 @@
-# MiniRemini
+# MiniRemini ![v2.0.0](https://img.shields.io/badge/v2.0.0-gray)
+
 ![Angular](https://img.shields.io/badge/Angular-20.3-red)
 ![NodeJs](https://img.shields.io/badge/NodeJs-22.19-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-green)
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 
-Mini-Remini is a web application for adding filters to the image. It was inspired by [Remini](https://app.remini.ai/).
+Mini-Remini is a web application for enhancing the image. It was inspired by [Remini](https://app.remini.ai/).
 
-A live version is available [right here](https://vikts.github.io/mini-remini/)
-
-This project is currently in development and uses mocked BE responses. 
+A live version for v1 is available [right here](https://vikts.github.io/mini-remini/)
 
 ## Features
 - Upload the image using file selection or drag and drop
-- Process the image with mocked steps
+- Process the image with [GFPGAN](https://github.com/TencentARC/GFPGAN)
 - Choose the filters and apply them to the image
 - View the filtered image in the before/after slider
+- Download the enhanced image
 
 ## Upcoming features
-- Create a simple Backend with Python + FastAPI:
-  - POST /upload - convert image File to url
-  - POST /applyFilters - apply filters to the image using Pillow library
-- Integrate the open source AI model [GFPGAN](https://github.com/TencentARC/GFPGAN):
-  - POST /enhance - enhance the image with the model
-  - Add filters: "Restore old photo", "Increase the sharpness"
-- Add download feature
+### Next version
+- Update filters:
+  - Add the filters for GFPGAN model: upscale, arch, bg_upsampler
+  - Handle color filters on BE
+- Deploy BE and AI model:
+  - Deploy BE to Render
+  - Upload AI model to Hugging Face Hub
 
-## Frontend architecture
-All the frontend files are placed inside /frontend folder.
+### Later versions
+- Image caching:
+  - Get image from the cache if it wasn't found
+- Use websockets for processing the image:
+  - BE return the statuses
+- Store the image on BE:
+  - Use image id for the requests
+- Zooming the image with canvas
+- Create own AI model based on GFPGAN
 
-The project is built with Angular 20 and uses the modern architecture optimized for scalability and maintability. 
-- State management
-  - The app state is managed using [@ngrx/component-store](https://ngrx.io/guide/component-store)
-- Standalone components
-  - The app is implemented entirely using [Angular standalone components](https://v17.angular.io/guide/standalone-components)
-  - Communication between components is handled via state management
-- Routing structure:
-  - ImageUploadComponent - displays file input and drag&drop upload area (appImageUpload directive)
-  - ImageProcessingComponent - shows steps of enhancing image pipelines, including error state
-  - ImageResultComponent - displays the enhanced image with before/after slider and filter controls. Route is reachable only if original and enhanced images are available, controlled by ImageGuard
-- API integration
-  - All API calls are mocked and handled through ImageApiService
-- Internationalization
-  - The app supports localization via [@ngx-translate](https://github.com/ngx-translate). The translation files are stored inside the public/locale folder
-- Styling
-  - Global styles are defined in src/styles.scss
-  - The app uses [Angular Material](https://material.angular.dev/) for UI components
-- Code quality
-  - Eslint is configured for static code analysis
-  - Unit testing is implemented using [Karma](https://karma-runner.github.io) and [Jasmine](https://jasmine.github.io)
+## Project structure
 
+This project consists of two parts:
+- [Frontend (Angular)](./frontend/README.md) - UI for uploading, processing and displaying the image
+- [Backend (Python)](./backend/README.md) - API server that handles image enhancement using GFPGAN
 
 ## Getting started
-
-### Prerequisites
-
-- [NodeJs 22+](https://nodejs.org)
-- [Angular CLI 17+](https://angular.dev/tools/cli)
-- [Python 3.10](https://www.python.org/downloads/release/python-3109/)
-
-### Installation and launching
 
 ```bash
 git clone https://github.com/VikTs/mini-remini.git
 ```
-Terminal 1
-```bash
-cd mini-remini/frontend
-npm install
-npm run start
-```
-
-Terminal 2
-
-- Windows
-```bash
-cd mini-remini/backend
-
-python -m venv venv
-./venv/Scripts/Activate.ps1
-
-pip install -r requirements.txt
-
-Invoke-WebRequest -Uri "https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth" -OutFile "experiments/pretrained_models/AI_model.pth"
-
-cd app
-./start.bat
-```
-
-- Linux/MacOS (wasn't tested)
-```bash
-cd mini-remini/backend
-
-python3 -m venv venv
-source venv/bin/activate
-
-pip install -r requirements.txt
-
-wget https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth -P experiments/pretrained_models/AI_model.pth
-
-uvicorn main:app --reload
-```
-
-Visit `http://localhost:4200/`. 
-The app will automatically reload on changes.
-
-### Building Frontend for production
-
-```bash
-ng build
-```
-
-The build will be located in the `dist/` directory. 
-
-### Running Frontend unit tests
-
-```bash
-ng test
-```
-
-Runs unit tests via Karma and Jasmine
-
+For detailed setup instructions:
+- [Frontend README](./frontend/README.md)
+- [Backend README](./backend/README.md)

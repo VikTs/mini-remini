@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from utils.image_filters import apply_filters
 from utils.image_enhance import enhance_image
 from schemas.image import ImageData, ImageFiltersData
+from utils.model_download import download_model
 import time
 
 app = FastAPI()
@@ -14,6 +15,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 api_router = APIRouter(prefix="/api")
+
+@app.on_event("startup")
+def on_startup():
+    download_model()
 
 @api_router.post("/upload")
 def upload_image(data: ImageData):

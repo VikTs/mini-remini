@@ -30,12 +30,4 @@ export class ImageComparisonComponent implements OnInit {
     this.afterImage$ = this.imageStore.enhancedImage$;
     this.isLoading$ = this.imageStore.isApplyingFilters$;
   }
-
-  getFilterAsString(filters: ImageFilters): string {
-    const formattedFilters = Object.entries(filters)
-      .map(([key, value]) => isNumber(value) ? `${key}(${value})` : null)
-      .filter((value) => value);
-
-    return formattedFilters.join(' ');
-  }
 }

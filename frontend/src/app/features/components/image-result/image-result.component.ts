@@ -27,6 +27,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './image-result.component.scss'
 })
 export class ImageResultComponent implements OnInit {
+  resultImage$!: Observable<string | null>;
   imageDimentions$!: Observable<{ width: number, height: number } | null>
 
   constructor(
@@ -35,6 +36,7 @@ export class ImageResultComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.resultImage$ = this.imageStore.enhancedImage$;
     this.imageDimentions$ = this.imageStore.enhancedImage$.pipe(
       filter((image) => !!image),
       switchMap((image) => ImageUtils.getImageDimensions(image!))
@@ -44,7 +46,7 @@ export class ImageResultComponent implements OnInit {
   onUploadImage(event: Event): void {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
-    
+
     this.imageUploadService.handleImageUpload(file);
     input.value = "";
   }
