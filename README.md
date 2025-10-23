@@ -18,18 +18,15 @@ A live version for v1 is available [right here](https://vikts.github.io/mini-rem
 
 ## Upcoming features
 ### Next version
-- Update filters:
-  - Add the filters for GFPGAN model: upscale, arch, bg_upsampler
-  - Handle color filters on BE
-- Deploy BE and AI model:
-  - Deploy BE to Render
-  - Upload AI model to Hugging Face Hub
+- Configure AI model filters:
+  - Face restoration
+  - Background upsample
 
 ### Later versions
-- Image caching:
-  - Get image from the cache if it wasn't found
+- Image caching
 - Use websockets for processing the image:
   - BE return the statuses
+- Combine /enhance and /applyFilters endpoints
 - Store the image on BE:
   - Use image id for the requests
 - Zooming the image with canvas

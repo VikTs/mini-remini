@@ -8,9 +8,9 @@ from config import MODEL_LOCAL_PATH
 def enhance_image(image: str, filters: Dict[str, float]):
     gfpgan_model = GFPGANer(
         model_path=MODEL_LOCAL_PATH,
+        channel_multiplier = 2,
         upscale = filters.get("upscale", 2),
         arch = filters.get("arch", "clean"),
-        channel_multiplier = filters.get("channel_multiplier", 2),
         bg_upsampler = filters.get("bg_upsampler", None)
     )
 

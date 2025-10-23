@@ -2,35 +2,7 @@
     <mat-card-content class="image-filters-content">
         <span class="h3 title">{{'filtersPanel.title' | translate}}</span>
         <form [formGroup]="form" class="image-filters-form">
-            <mat-accordion class="group-accordion" *ngFor="let group of filtersConfig">
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <div class="group-header">
-                            <mat-icon class="group-icon"> {{group.icon}}</mat-icon>
-                            <div>
-                                <h3 class="h3 group-title">{{group.name | translate}}</h3>
-                                <p class="text small group-subtitle">{{group.description| translate}}</p>
-                            </div>
-                        </div>
-                    </mat-expansion-panel-header>
-
-                    <div class="filter-group">
-                        <ng-container *ngFor="let filter of group.filters">
-                            <div class="filter-slider-group" *ngIf="form.get(filter.id)">
-                                <div class="filter-label">
-                                    <span class="filter-name text">{{filter.name | translate}}</span>
-                                    <span
-                                        class="filter-value text">{{filter.valueBuilder(getControlValue(filter.id))}}</span>
-                                </div>
-                                <mat-slider class="filter-slider" [min]="filter.minValue" [max]="filter.maxValue"
-                                    [step]="0.1">
-                                    <input matSliderThumb [formControlName]="filter.id">
-                                </mat-slider>
-                            </div>
-                        </ng-container>
-                    </div>
-                </mat-expansion-panel>
-            </mat-accordion>
+            <app-filter-group *ngFor="let group of filtersConfig" [group]="group" [form]="form"></app-filter-group>
         </form>
     </mat-card-content>
     <mat-card-actions class="actions">

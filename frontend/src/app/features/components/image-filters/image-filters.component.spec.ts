@@ -51,13 +51,6 @@ describe('ImageFiltersComponent', () => {
         expect(Object.keys(component.form.controls)).toEqual(Object.keys(defaultFilters));
     });
 
-    it('should render all the filters from the defaultFilters', () => {
-        const filterSliders = fixture.debugElement.queryAll(By.css('.filter-slider'));
-        const defaultFiltersList = Object.keys(defaultFilters);
-
-        expect(filterSliders.length).toBe(defaultFiltersList.length);
-    });
-
     it('should call applyFilters when apply button is clicked', () => {
         imageStoreMock.applyFilters.and.returnValue(of(null));
         component.form.get("sepia")?.setValue(1);

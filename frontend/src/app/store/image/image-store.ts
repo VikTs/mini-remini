@@ -1,9 +1,10 @@
 import { ComponentStore } from "@ngrx/component-store";
-import { defaultFilters, ImageFilters } from "../../features/models/image-filters.model";
-import { ImageState, ProcessStep } from "./image-state.model";
-import { ImageApiService } from "../../features/services/image-api.service";
 import { catchError, delay, finalize, Observable, switchMap, tap } from "rxjs";
 import { Injectable } from "@angular/core";
+import { defaultFilters } from "../../features/models/image-filters.constant";
+import { ImageFilters } from "../../features/models/image-filters.model";
+import { ImageState, ProcessStep } from "./image-state.model";
+import { ImageApiService } from "../../features/services/image-api.service";
 
 const initialState: ImageState = {
     originalImage: null,
@@ -83,16 +84,14 @@ export class ImageStore extends ComponentStore<ImageState> {
 
         return this.originalImage$
             .pipe(
-                tap(() => {
-                    this.setFilters(filters);
-                }),
                 switchMap((image) => {
                     if (!image) throw new Error('No image found');
-
+                    
                     // Always use original image for applying filters
                     return this.imageApiService.applyFilters(image, filters);
                 }),
                 tap((image) => {
+                    this.setFilters(filters);
                     this.setEnhancedImage(image);
                 }),
                 finalize(() => this.setIsApplyingFilters(false))

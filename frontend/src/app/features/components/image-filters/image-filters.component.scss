@@ -51,50 +51,6 @@
     margin-bottom: 15px;
 }
 
-.filter-group {
-    padding-top: 15px;
-    padding-right: 5px;
-}
-
-.group-title {
-    font-weight: 500;
-    font-size: 1rem;
-}
-
-.group-subtitle {
-    font-weight: 500;
-    margin: 0;
-}
-
-.group-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    margin: 5px 0;
-}
-
-.group-icon {
-    color: #494949;
-}
-
-.filter-name,
-.filter-value {
-    font-size: 0.95rem;
-    font-weight: 500;
-}
-
-.filter-label {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.filter-slider {
-    width: 100%;
-}
-
 .btn {
     width: 100%;
     margin: 5px 15px;
@@ -102,17 +58,4 @@
 
 .mat-mdc-card-content:first-child {
     padding-top: 0;
-}
-
-.mat-expansion-panel {
-    background: transparent;
-
-    .mat-expansion-panel-header {
-        height: auto;
-        padding: 0 10px;
-    }
-
-    &:not([class*=mat-elevation-z]) {
-        box-shadow: none;
-    }
 }

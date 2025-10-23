@@ -47,14 +47,19 @@
     "filters": {
       "brightness": "Brightness",
       "contrast": "Contrast",
-      "grayscale": "Grayscale",
-      "saturate": "Saturation",
-      "sepia": "Sepia"
+      "upscale": "Upscale",
+      "arch": {
+        "name": "Face restoration",
+        "options": {
+          "clean": "Clean face",
+          "original": "Glossy face"
+        }
+      }
     },
     "groups": {
-      "color": {
-        "name": "Color & Tone",
-        "description": "Change the color"
+      "enhancement": {
+        "name": "Enhancement",
+        "description": "Enhance the image"
       },
       "lighting": {
         "name": "Lighting & Exposure",

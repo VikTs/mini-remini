@@ -17,22 +17,16 @@ For enhancing the image [GFPGAN](https://github.com/TencentARC/GFPGAN) model is 
 - Windows
 ```bash
 cd mini-remini/backend
-./setup.bat
+python ./setup.py
+python ./run.py
 ./run.bat
 ```
 
 - Linux/MacOS (wasn't tested)
 ```bash
 cd mini-remini/backend
-
-python3 -m venv venv
-source venv/bin/activate
-
-pip install -r requirements.txt
-
-wget https://github.com/TencentARC/GFPGAN/releases/download/v0.2.0/GFPGANCleanv1-NoCE-C2.pth -P pretrained_models/GFPGANCleanv1-NoCE-C2.pth
-
-uvicorn main:app --reload
+python3 ./setup.py
+python3 ./run.py
 ```
 
 The server will be launched on `http://127.0.0.1:8000`. 

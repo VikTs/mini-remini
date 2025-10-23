@@ -56,7 +56,7 @@ describe('ImageResultComponent', () => {
         expect(result).toEqual({ width: 600, height: 200 });
     }));
 
-    it('should trigger anchor click when download button is clicked', fakeAsync(() => {
+    it('should trigger anchor click when download button is clicked', (() => {
         const testUrl = "data:image/png";
         component.resultImage$ = of(testUrl);
         fixture.detectChanges();

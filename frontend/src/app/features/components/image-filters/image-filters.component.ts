@@ -1,28 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { MatSliderModule } from '@angular/material/slider';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { combineLatest, map, Observable, startWith, take } from 'rxjs';
 import { isEqual } from 'lodash';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { filtersConfig } from '../../models/image-filters.model';
 import { ImageStore } from '../../../store/image/image-store';
 import { DialogService } from '../../../shared/services/dialog.service';
-import { MatIconModule } from '@angular/material/icon';
+import { filtersConfig } from '../../models/image-filters.constant';
+import { FilterGroupComponent } from '../filter-group/filter-group.component';
 
 @Component({
   selector: 'app-image-filters',
   imports: [
     CommonModule,
     FormsModule,
+    FilterGroupComponent,
     MatCardModule,
-    MatSliderModule,
     TranslateModule,
-    ReactiveFormsModule,
-    MatExpansionModule,
-    MatIconModule
+    ReactiveFormsModule
   ],
   templateUrl: './image-filters.component.html',
   styleUrl: './image-filters.component.scss'
@@ -60,10 +56,6 @@ export class ImageFiltersComponent implements OnInit {
       map(([isApplyingFilters, storeFilters, formValue]) =>
         isApplyingFilters || isEqual(storeFilters, formValue))
     )
-  }
-
-  getControlValue(name: string): number {
-    return this.form.get(name)?.value ?? 0;
   }
 
   applyFilters(): void {

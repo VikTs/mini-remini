@@ -35,7 +35,8 @@ module.exports = tseslint.config(
         },
       ],
       "@angular-eslint/prefer-inject": "off",
-      "@typescript-eslint/no-unused-vars": ["warn"]
+      "@typescript-eslint/no-unused-vars": ["warn"],
+      "@typescript-eslint/no-explicit-any": ["warn"]
     },
   },
   {
