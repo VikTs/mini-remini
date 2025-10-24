@@ -1,0 +1,17 @@
+<mat-accordion class="group-accordion">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <div class="group-header">
+                <mat-icon class="group-icon"> {{group.icon}}</mat-icon>
+                <div>
+                    <h3 class="h3 group-title">{{group.name | translate}}</h3>
+                    <p class="text small group-subtitle">{{group.description| translate}}</p>
+                </div>
+            </div>
+        </mat-expansion-panel-header>
+
+        <div class="filter-group">
+            <app-filter *ngFor="let filter of group.filters" [filter]="filter" [form]="form"></app-filter>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

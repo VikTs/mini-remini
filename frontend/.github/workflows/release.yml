@@ -1,0 +1,51 @@
+name: Release
+on:
+  push:
+    branches:
+      main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get last git tag
+        id: get_last_tag
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+          echo "last_tag=$LAST_TAG" >> $GITHUB_OUTPUT
+
+      - name: Get version from package.json
+        id: get_version
+        run: |
+          VERSION=$(jq -r .version package.json)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Compare versions and decide to release
+        id: check_version
+        run: |
+          if [ "v${{ steps.get_version.outputs.version }}" = "${{ steps.get_last_tag.outputs.last_tag }}" ]; then
+            echo "Versions match, skipping release."
+            echo "do_release=false" >> $GITHUB_OUTPUT
+          else
+            echo "Versions differ, will release."
+            echo "do_release=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Git tag
+        if: steps.check_version.outputs.do_release == 'true'
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag -a "v${{ steps.get_version.outputs.version }}" -m "Release version v${{ steps.get_version.outputs.version }}"
+          git push origin "v${{ steps.get_version.outputs.version }}"
+
+      - name: Create GitHub release
+        if: steps.check_version.outputs.do_release == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: "v${{ steps.get_version.outputs.version }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
