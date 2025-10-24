@@ -1,0 +1,25 @@
+<div [formGroup]="form" [ngSwitch]="filter.type">
+    <ng-container *ngSwitchCase="'slider'">
+        <div class="filter-slider-group" *ngIf="form.get(filter.id)">
+            <div class="filter-label">
+                <span class="filter-name text">{{filter.name | translate}}</span>
+                <span class="filter-value text">{{getFilterValue(filter,
+                    getControlValue(filter.id))}}</span>
+            </div>
+            <mat-slider class="filter-slider" [min]="filter.minValue ?? 0" [max]="filter.maxValue ?? 1"
+                [step]="filter.step ?? 0.1">
+                <input matSliderThumb [formControlName]="filter.id">
+            </mat-slider>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'radio'">
+        <div class="filter-radio-group" *ngIf="form.get(filter.id) && filter.values">
+            <p class="filter-name text">{{filter.name | translate}}</p>
+            <mat-radio-group class="radio-btn-group" [formControlName]="filter.id">
+                <mat-radio-button class="text" *ngFor="let value of filter.values"
+                    [value]="value">{{getFilterValue(filter, value) |
+                    translate}}</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </ng-container>
+</div>

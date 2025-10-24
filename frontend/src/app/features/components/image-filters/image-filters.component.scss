@@ -1,0 +1,61 @@
+.image-filters {
+    width: 300px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.45);
+    display: flex;
+    flex-direction: column;
+}
+
+.image-filters-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-right: 10px;
+    padding: 0 30px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+}
+
+.image-filters-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.actions {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.btn {
+    width: 100%;
+    margin: 5px 15px;
+}
+
+.mat-mdc-card-content:first-child {
+    padding-top: 0;
+}

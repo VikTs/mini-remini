@@ -1,0 +1,12 @@
+<mat-card class="image-filters" *ngIf="form">
+    <mat-card-content class="image-filters-content">
+        <span class="h3 title">{{'filtersPanel.title' | translate}}</span>
+        <form [formGroup]="form" class="image-filters-form">
+            <app-filter-group *ngFor="let group of filtersConfig" [group]="group" [form]="form"></app-filter-group>
+        </form>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+        <button class="btn primary" (click)="applyFilters()" [disabled]="isDisabled$ | async">{{"common.apply" |
+            translate}}</button>
+    </mat-card-actions>
+</mat-card>
