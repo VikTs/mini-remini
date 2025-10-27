@@ -12,25 +12,26 @@
     "error_message": "Please try again later"
   },
   "upload": {
-    "title": "Apply filters to your image",
-    "subtitle": "You can upload, edit image and check the result. Downloading the final image is currently unavailable.",
+    "title": "Enhance your image",
+    "subtitle": "You can upload, edit image and compare the result.",
     "button_label": "Upload image",
-    "upload_info1": "or drop it here",
-    "upload_info2": "*Only images are supported",
+    "drag_info": "or drop it here",
+    "upload_info1": "*Only images are supported",
+    "upload_info2": "*Maximum size: 5MB",
     "drop_image_message": "Drop your image here",
-    "type_error": {
-      "title": "Incorrect file type",
+    "upload_error": {
+      "title": "Invalid file type or size",
       "message": "Please try to upload another image"
     }
   },
   "processing": {
     "uploading": {
       "title": "Uploading the image ...",
-      "subtitle": "Immitation of sending the image to remote service"
+      "subtitle": "Sending the image to remote service"
     },
     "enhancing": {
       "title": "Enhancing the image ...",
-      "subtitle": "Immitation of handling the image by AI"
+      "subtitle": "Handling the image by AI. This can take some time"
     },
     "done": {
       "title": "Image is ready",
@@ -46,14 +47,19 @@
     "filters": {
       "brightness": "Brightness",
       "contrast": "Contrast",
-      "grayscale": "Grayscale",
-      "saturate": "Saturation",
-      "sepia": "Sepia"
+      "upscale": "Upscale",
+      "arch": {
+        "name": "Face restoration",
+        "options": {
+          "clean": "Clean face",
+          "original": "Glossy face"
+        }
+      }
     },
     "groups": {
-      "color": {
-        "name": "Color & Tone",
-        "description": "Change the color"
+      "enhancement": {
+        "name": "Enhancement",
+        "description": "Enhance the image"
       },
       "lighting": {
         "name": "Lighting & Exposure",
@@ -63,6 +69,7 @@
   },
   "result": {
     "new_upload_label": "New upload",
+    "download_label": "Download",
     "width_label": "Width",
     "height_label": "Height"
   }
