@@ -1,6 +1,5 @@
 import { FilterGroupConfig, ImageFilters } from "./image-filters.model";
 
-// ToDo: store on BE or send with /enhance
 export const defaultFilters: ImageFilters = {
   brightness: 1,
   contrast: 1,
