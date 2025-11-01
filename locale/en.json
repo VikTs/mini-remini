@@ -51,8 +51,7 @@
       "arch": {
         "name": "Face restoration",
         "options": {
-          "clean": "Clean face",
-          "original": "Glossy face"
+          "clean": "Clean face"
         }
       }
     },

@@ -1,1 +1,0 @@
-import{E as n,q as a}from"./chunk-CYPRICMP.js";import{I as e,na as o}from"./chunk-BUBE5SYN.js";var g=(()=>{class t{static \u0275fac=function(r){return new(r||t)};static \u0275mod=o({type:t});static \u0275inj=e({imports:[a,n,a]})}return t})();export{g as a};
