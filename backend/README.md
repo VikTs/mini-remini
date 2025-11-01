@@ -14,19 +14,20 @@ For enhancing the image [GFPGAN](https://github.com/TencentARC/GFPGAN) model is 
 
 ### Installation and launching
 
-- Windows
-```bash
-cd mini-remini/backend
-python ./setup.py
-python ./run.py
-```
-
-- Linux/MacOS (wasn't tested)
 ```bash
 cd mini-remini/backend
 python3 ./setup.py
 python3 ./run.py
 ```
 
-The server will be launched on `http://0.0.0.0:8000`. 
+The server will be launched on `http://127.0.0.1:8000`. 
+
+### Running in production mode
+By default the server runs in **development mode**.
+
+To start it in **prodaction mode**, use --env parameter:
+
+```bash
+python3 ./run.py --env prod
+```
 
