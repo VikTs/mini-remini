@@ -9,7 +9,6 @@ export const defaultFilters: ImageFilters = {
 
 export const archValues = {
   clean: "filtersPanel.filters.arch.options.clean",
-  original: "filtersPanel.filters.arch.options.original",
 }
 
 export const filtersConfig: FilterGroupConfig[] = [
