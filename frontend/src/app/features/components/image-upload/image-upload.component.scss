@@ -2,7 +2,9 @@
     height: 100%;
     width: 100%;
     position: relative;
-    background-color: #d4c9e7;
+    background-image: url("/images/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .image-upload-section {

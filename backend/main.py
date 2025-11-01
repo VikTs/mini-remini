@@ -15,15 +15,14 @@ app.add_middleware(
 )
 api_router = APIRouter(prefix="/api")
 
-
 @api_router.post("/upload")
 def upload_image(data: ImageData):
     time.sleep(0.5)
     return {"image": data.image}
 
 @api_router.post("/enhance")
-def enhance(data: ImageData):  
-    result = enhance_image(data.image, {})
+def enhance(data: ImageFiltersData):  
+    result = enhance_image(data.image, data.filters)
     return {"image": result}
 
 @api_router.post("/applyFilters")

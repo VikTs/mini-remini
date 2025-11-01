@@ -48,7 +48,7 @@ The app will automatically reload on changes.
 ### Building for production
 
 ```bash
-ng build
+npm run build
 ```
 
 The build will be located in the `dist/` directory. 
@@ -56,7 +56,7 @@ The build will be located in the `dist/` directory.
 ### Running unit tests
 
 ```bash
-ng test
+npm run test
 ```
 
 Runs unit tests via Karma and Jasmine

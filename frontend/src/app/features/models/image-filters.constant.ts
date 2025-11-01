@@ -1,6 +1,5 @@
 import { FilterGroupConfig, ImageFilters } from "./image-filters.model";
 
-// ToDo: store on BE or send with /enhance
 export const defaultFilters: ImageFilters = {
   brightness: 1,
   contrast: 1,
@@ -10,7 +9,6 @@ export const defaultFilters: ImageFilters = {
 
 export const archValues = {
   clean: "filtersPanel.filters.arch.options.clean",
-  original: "filtersPanel.filters.arch.options.original",
 }
 
 export const filtersConfig: FilterGroupConfig[] = [

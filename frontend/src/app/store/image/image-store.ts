@@ -54,7 +54,6 @@ export class ImageStore extends ComponentStore<ImageState> {
         isApplyingFilters
     }));
 
-
     readonly processImage = (): Observable<string | null> =>
         this.originalImage$
             .pipe(
@@ -65,8 +64,9 @@ export class ImageStore extends ComponentStore<ImageState> {
                     return this.imageApiService.upload(image);
                 }),
                 switchMap((image) => {
+                    const filters = this.get(state => state.filters);
                     this.setProcessStep(ProcessStep.Enhancing);
-                    return this.imageApiService.enhance(image);
+                    return this.imageApiService.enhance(image, filters);
                 }),
                 tap((image) => {
                     this.setEnhancedImage(image);
@@ -86,7 +86,7 @@ export class ImageStore extends ComponentStore<ImageState> {
             .pipe(
                 switchMap((image) => {
                     if (!image) throw new Error('No image found');
-                    
+
                     // Always use original image for applying filters
                     return this.imageApiService.applyFilters(image, filters);
                 }),

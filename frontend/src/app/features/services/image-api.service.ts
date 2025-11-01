@@ -27,8 +27,8 @@ export class ImageApiService {
         )
     }
 
-    enhance(image: string): Observable<string> {
-        return this.http.post<ImageResponse>(`${this.url}/enhance`, { image }, {
+    enhance(image: string, filters: ImageFilters): Observable<string> {
+        return this.http.post<ImageResponse>(`${this.url}/enhance`, { image, filters }, {
             headers: { 'Content-Type': 'application/json' }
         }).pipe(
             map((data) => data.image),
