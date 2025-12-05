@@ -1,5 +1,5 @@
 <div class="container">
-    <ng-container [ngSwitch]="currentStep$ | async">
+    <ng-container [ngSwitch]="currentStep()">
         <div *ngSwitchCase="ProcessStepEnum.Uploading" class="processing-step">
             <h2 class="h2">{{'processing.uploading.title' | translate}}</h2>
             <p class="text">{{'processing.uploading.subtitle' | translate}}</p>

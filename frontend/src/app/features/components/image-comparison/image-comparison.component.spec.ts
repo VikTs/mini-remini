@@ -12,9 +12,12 @@ describe('ImageComparisonComponent', () => {
 
     beforeEach(async () => {
         imageStoreMock = jasmine.createSpyObj<ImageStore>("ImageStore", [], {
+            enhancedImage$: of('data:image/png'),
+            originalImage$: of('data:image/png'),
             filters$: of({
                 sepia: 1,
-            })
+            }),
+            isApplyingFilters$: of(false)
         });
 
         await TestBed.configureTestingModule({

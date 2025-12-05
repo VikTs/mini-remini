@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { FilterGroupConfig } from '../../models/image-filters.model';
@@ -17,7 +17,8 @@ import { FormGroup } from '@angular/forms';
     TranslateModule
   ],
   templateUrl: './filter-group.component.html',
-  styleUrl: './filter-group.component.scss'
+  styleUrl: './filter-group.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterGroupComponent {
   @Input() group!: FilterGroupConfig;

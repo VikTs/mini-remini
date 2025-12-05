@@ -15,7 +15,7 @@ The project is built with Angular 20 and uses the modern architecture optimized 
   - ImageProcessingComponent - shows steps of enhancing image pipelines, including error state
   - ImageResultComponent - displays the enhanced image with before/after slider and filter controls. Route is reachable only if original and enhanced images are available, controlled by ImageGuard
 - API integration
-  - All API calls are handled through ImageApiService
+  - API calls are handled through ImageApiService
 - Internationalization
   - The app supports localization via [@ngx-translate](https://github.com/ngx-translate). The translation files are stored inside the public/locale folder
 - Styling
@@ -23,7 +23,7 @@ The project is built with Angular 20 and uses the modern architecture optimized 
   - The app uses [Angular Material](https://material.angular.dev/) for UI components
 - Code quality
   - Eslint is configured for static code analysis
-  - Unit testing is implemented using [Karma](https://karma-runner.github.io) and [Jasmine](https://jasmine.github.io)
+  - Testing is implemented using [Karma](https://karma-runner.github.io) and [Jasmine](https://jasmine.github.io)
 
 
 ## Getting started
