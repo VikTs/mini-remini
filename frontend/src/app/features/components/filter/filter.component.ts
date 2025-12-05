@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -16,7 +16,8 @@ import { FilterConfig } from '../../models/image-filters.model';
     ReactiveFormsModule
   ],
   templateUrl: './filter.component.html',
-  styleUrl: './filter.component.scss'
+  styleUrl: './filter.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterComponent {
   @Input() filter!: FilterConfig<any>;
