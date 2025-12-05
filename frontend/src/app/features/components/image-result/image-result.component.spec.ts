@@ -1,5 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 import { of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageResultComponent } from './image-result.component';
@@ -47,18 +47,14 @@ describe('ImageResultComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should compute imageDimentions$ from enhancedImage$', fakeAsync(() => {
-        let result: any = null;
-        component.imageDimentions$.subscribe((dimentions) => {
-            result = dimentions;
-        });
+    it('should compute imageDimentions from enhancedImage', fakeAsync(() => {
         tick();
-        expect(result).toEqual({ width: 600, height: 200 });
+        expect(component.imageDimensions()).toEqual({ width: 600, height: 200 });
     }));
 
     it('should trigger anchor click when download button is clicked', (() => {
         const testUrl = "data:image/png";
-        component.resultImage$ = of(testUrl);
+        component.resultImage = signal(testUrl);
         fixture.detectChanges();
 
         const anchor = fixture.debugElement.query(By.css('.download-link'));

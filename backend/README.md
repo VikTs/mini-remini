@@ -25,7 +25,7 @@ The server will be launched on `http://127.0.0.1:8000`.
 ### Running in production mode
 By default the server runs in **development mode**.
 
-To start it in **prodaction mode**, use --env parameter:
+To start it in **production mode**, use --env parameter:
 
 ```bash
 python3 ./run.py --env prod

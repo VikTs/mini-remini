@@ -2,6 +2,17 @@ import os
 import sys
 import subprocess
 from config import VENV_DIR, BASE_DIR
+
+if os.name == "nt":
+    python_exec = VENV_DIR / "Scripts" / "python.exe" #Windows
+else:
+    python_exec = VENV_DIR / "bin" / "python" #Linux/macOS
+
+if sys.prefix == sys.base_prefix:
+    print("Activating virtual environment...")
+    subprocess.run([str(python_exec)] + sys.argv, check=True)
+    sys.exit()
+
 from dotenv import load_dotenv
 
 print("Loading environment variables...")
@@ -27,14 +38,6 @@ else:
 host = os.environ.get("HOST", "0.0.0.0")
 port = os.environ.get("PORT", "8000")
 is_debug = os.environ.get("DEBUG", False)
-
-
-print("Activating virtual environment...")
-if os.name == "nt":  #Windows
-    python_exec = VENV_DIR / "Scripts" / "python.exe"
-else: # Linux/macOS
-    python_exec = VENV_DIR / "bin" / "python" 
-    
 
 print("Running the server...")
 cmd = [

@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { FilterComponent } from './filter.component';
 import { TranslateTestModule } from '../../../testing/translate-test.module';
+import { ChangeDetectorRef } from '@angular/core';
 
 describe('FilterComponent', () => {
   let component: FilterComponent;
@@ -44,6 +45,7 @@ describe('FilterComponent', () => {
       valueBuilder: () => ""
     }
 
+    fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
     fixture.detectChanges();
 
     const slider = fixture.debugElement.query(By.css('mat-slider'))
@@ -59,6 +61,7 @@ describe('FilterComponent', () => {
       valueBuilder: () => ""
     }
 
+    fixture.componentRef.injector.get(ChangeDetectorRef).markForCheck();
     fixture.detectChanges();
 
     const radioBtns = fixture.debugElement.queryAll(By.css('mat-radio-button'))

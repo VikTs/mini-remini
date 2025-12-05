@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,7 +18,8 @@ import { ImageUploadService } from '../../services/image-upload.service';
     TranslateModule
   ],
   templateUrl: './image-upload.component.html',
-  styleUrl: './image-upload.component.scss'
+  styleUrl: './image-upload.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageUploadComponent implements OnInit {
   constructor(
