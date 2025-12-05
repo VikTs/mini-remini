@@ -1,8 +1,9 @@
 <div class="container">
     <div class="header">
         <button class="btn secondary home-btn" routerLink="/"><mat-icon class="icon">home</mat-icon></button>
-        <div class="download" *ngIf="resultImage$ | async as image">
-            <a [href]="image" download="enhanced-image.png" style="display: none;" class="download-link" #imgDownload></a>
+        <div class="download" *ngIf="resultImage() as image">
+            <a [href]="image" download="enhanced-image.png" style="display: none;" class="download-link"
+                #imgDownload></a>
             <button class="btn primary download-btn" (click)="imgDownload.click();">
                 {{"result.download_label" | translate}}
                 <mat-icon class="icon">download</mat-icon>
@@ -18,9 +19,14 @@
         </div>
     </div>
     <div class="footer">
-        <div class="image-dimentions" *ngIf="imageDimentions$ | async as imageDimentions">
-            <span class="text"><b>{{"result.width_label" | translate}}:</b> {{imageDimentions.width }}px</span>
-            <span class="text"><b>{{"result.height_label" | translate}}:</b> {{imageDimentions.height }}px</span>
+        <div class="image-dimentions">
+            <span class="text">
+                <b>{{"result.width_label" | translate}}:</b>
+                {{imageDimensions()?.width ?? "-" }}px</span>
+            <span class="text">
+                <b>{{"result.height_label" | translate}}:</b>
+                {{imageDimensions()?.height ?? "-" }}px
+            </span>
         </div>
         <div class="image-upload">
             <input type="file" accept="image/*" #imgInput style="display: none;" (change)="onUploadImage($event)" />

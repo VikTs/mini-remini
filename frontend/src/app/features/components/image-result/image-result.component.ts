@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ImageComparisonComponent } from '../image-comparison/image-comparison.component';
-import { filter, Observable, switchMap } from 'rxjs';
-import { ImageFiltersComponent } from "../image-filters/image-filters.component";
+import { Component, effect, signal, Signal, WritableSignal } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule } from '@ngx-translate/core';
-import { MatIconModule } from '@angular/material/icon';
+import { firstValueFrom } from 'rxjs';
 import { ImageStore } from '../../../store/image/image-store';
 import { ImageUtils } from '../../../shared/utils/image.utils';
 import { ImageUploadService } from '../../services/image-upload.service';
-import { RouterModule } from '@angular/router';
+import { ImageComparisonComponent } from '../image-comparison/image-comparison.component';
+import { ImageFiltersComponent } from "../image-filters/image-filters.component";
 
 @Component({
   selector: 'app-image-result',
@@ -26,21 +27,26 @@ import { RouterModule } from '@angular/router';
   templateUrl: './image-result.component.html',
   styleUrl: './image-result.component.scss'
 })
-export class ImageResultComponent implements OnInit {
-  resultImage$!: Observable<string | null>;
-  imageDimentions$!: Observable<{ width: number, height: number } | null>
+export class ImageResultComponent {
+  resultImage: Signal<string | null>;
+  imageDimensions: WritableSignal<{ width: number; height: number } | null> = signal(null);
 
   constructor(
     private imageStore: ImageStore,
     private imageUploadService: ImageUploadService
-  ) { }
+  ) {
+    this.resultImage = toSignal(this.imageStore.enhancedImage$, { initialValue: null });
 
-  ngOnInit(): void {
-    this.resultImage$ = this.imageStore.enhancedImage$;
-    this.imageDimentions$ = this.imageStore.enhancedImage$.pipe(
-      filter((image) => !!image),
-      switchMap((image) => ImageUtils.getImageDimensions(image!))
-    )
+    effect(async () => {
+      const image = this.resultImage();
+      if (!image) {
+        this.imageDimensions.set(null);
+        return;
+      }
+
+      const dims = await firstValueFrom(ImageUtils.getImageDimensions(image));
+      this.imageDimensions.set(dims);
+    });
   }
 
   onUploadImage(event: Event): void {

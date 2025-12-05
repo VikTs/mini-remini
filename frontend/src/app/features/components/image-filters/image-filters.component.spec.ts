@@ -6,6 +6,7 @@ import { ImageFiltersComponent } from './image-filters.component';
 import { TranslateTestModule } from '../../../testing/translate-test.module';
 import { ImageStore } from '../../../store/image/image-store';
 import { DialogService } from '../../../shared/services/dialog.service';
+import { signal } from '@angular/core';
 
 describe('ImageFiltersComponent', () => {
     let component: ImageFiltersComponent;
@@ -23,7 +24,8 @@ describe('ImageFiltersComponent', () => {
     beforeEach(async () => {
         imageStoreMock = jasmine.createSpyObj<ImageStore>("ImageStore", ["applyFilters"], {
             filters$: of(defaultFilters),
-            isApplyingFilters$: of(false)
+            isApplyingFilters$: of(false),
+            enhancedImage$: of(null)
         });
         dialogServiceMock = jasmine.createSpyObj<DialogService>("DialogService", ["openErrorDialog"]);
 
@@ -62,26 +64,21 @@ describe('ImageFiltersComponent', () => {
         expect(imageStoreMock.applyFilters).toHaveBeenCalledWith(component.form.value);
     });
 
-    it('should disable apply button when isApplyingFilters is true', (done) => {
-        component.isDisabled$.subscribe({
-            next: () => {
-                const applyButton = fixture.debugElement.query(By.css('button')).nativeElement;
-                expect(applyButton.disabled).toBeTrue();
-                done();
-            }
-        });
+    it('should disable apply button when isApplyingFilters is true', () => {
+        component.isDisabled = signal(true);
+        fixture.detectChanges();
+
+        const applyButton = fixture.debugElement.query(By.css('button')).nativeElement;
+        expect(applyButton.disabled).toBeTrue();
     });
 
-    it('should enable apply button when form value is changes', (done) => {
+    it('should enable apply button when form value is changes', () => {
+        component.isDisabled = signal(false);
         component.form.get("sepia")?.setValue(1);
         fixture.detectChanges();
-        component.isDisabled$.subscribe({
-            next: () => {
-                const applyButton = fixture.debugElement.query(By.css('button')).nativeElement;
-                expect(applyButton.disabled).toBeFalse();
-                done();
-            }
-        });
+
+        const applyButton = fixture.debugElement.query(By.css('button')).nativeElement;
+        expect(applyButton.disabled).toBeFalse();
     });
 
     it('should open error dialog when applyFilters fails', () => {
