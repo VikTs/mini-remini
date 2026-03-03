@@ -1,7 +1,7 @@
-# MiniRemini ![v2.0.2](https://img.shields.io/badge/v2.0.2-gray)
+# MiniRemini ![v2.1.0](https://img.shields.io/badge/v2.1.0-gray)
 
-![Angular](https://img.shields.io/badge/Angular-20.3-red)
-![NodeJs](https://img.shields.io/badge/NodeJs-22.19-blue)
+![Angular](https://img.shields.io/badge/Angular-21.2-red)
+![NodeJs](https://img.shields.io/badge/NodeJs-24.12-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-green)
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 
