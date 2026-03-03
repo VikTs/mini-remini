@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ImageStore } from '../../../store/image/image-store';
@@ -9,10 +8,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
   selector: 'app-image-comparison',
   standalone: true,
   imports: [
-    CommonModule,
     MatIconModule,
     ImageSliderComponent
-  ],
+],
   templateUrl: './image-comparison.component.html',
   styleUrl: './image-comparison.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
