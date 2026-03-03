@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -9,9 +8,8 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     MatIconModule,
     MatProgressSpinnerModule,
-    TranslateModule,
-    CommonModule
-  ],
+    TranslateModule
+],
   templateUrl: './image-slider.component.html',
   styleUrl: './image-slider.component.scss'
 })

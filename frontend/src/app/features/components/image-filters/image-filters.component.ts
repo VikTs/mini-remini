@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -14,13 +13,12 @@ import { FilterGroupComponent } from '../filter-group/filter-group.component';
 @Component({
   selector: 'app-image-filters',
   imports: [
-    CommonModule,
     FormsModule,
     FilterGroupComponent,
     MatCardModule,
     TranslateModule,
     ReactiveFormsModule
-  ],
+],
   templateUrl: './image-filters.component.html',
   styleUrl: './image-filters.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

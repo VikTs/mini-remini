@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { take } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,12 +12,11 @@ import { ImageStore } from '../../../store/image/image-store';
   selector: 'app-image-processing',
   standalone: true,
   imports: [
-    CommonModule,
     MatButtonModule,
     MatIconModule,
     TranslateModule,
     RouterModule
-  ],
+],
   templateUrl: './image-processing.component.html',
   styleUrl: './image-processing.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

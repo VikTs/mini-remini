@@ -2,7 +2,6 @@ import { Component, effect, signal, Signal, WritableSignal } from '@angular/core
 import { RouterModule } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
@@ -16,14 +15,13 @@ import { ImageFiltersComponent } from "../image-filters/image-filters.component"
   selector: 'app-image-result',
   standalone: true,
   imports: [
-    CommonModule,
     ImageComparisonComponent,
     ImageFiltersComponent,
     MatProgressSpinnerModule,
     RouterModule,
     TranslateModule,
     MatIconModule
-  ],
+],
   templateUrl: './image-result.component.html',
   styleUrl: './image-result.component.scss'
 })
