@@ -1,6 +1,5 @@
-import { Component, effect, signal, Signal, WritableSignal } from '@angular/core';
+import { Component, effect, inject, signal, Signal, WritableSignal } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule } from '@ngx-translate/core';
@@ -26,15 +25,14 @@ import { ImageFiltersComponent } from "../image-filters/image-filters.component"
   styleUrl: './image-result.component.scss'
 })
 export class ImageResultComponent {
-  resultImage: Signal<string | null>;
+  private imageStore = inject(ImageStore);
+
+  resultImage = this.imageStore.enhancedImage;
   imageDimensions: WritableSignal<{ width: number; height: number } | null> = signal(null);
 
   constructor(
-    private imageStore: ImageStore,
     private imageUploadService: ImageUploadService
   ) {
-    this.resultImage = toSignal(this.imageStore.enhancedImage$, { initialValue: null });
-
     effect(async () => {
       const image = this.resultImage();
       if (!image) {

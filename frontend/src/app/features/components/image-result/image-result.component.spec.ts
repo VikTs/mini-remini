@@ -1,11 +1,10 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, signal, WritableSignal } from '@angular/core';
 import { of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageResultComponent } from './image-result.component';
 import { TranslateTestModule } from '../../../testing/translate-test.module';
 import { ImageStore } from '../../../store/image/image-store';
-import { DialogService } from '../../../shared/services/dialog.service';
 import { ImageUtils } from '../../../shared/utils/image.utils';
 import { ImageUploadService } from '../../services/image-upload.service';
 import { By } from '@angular/platform-browser';
@@ -13,18 +12,18 @@ import { By } from '@angular/platform-browser';
 describe('ImageResultComponent', () => {
     let component: ImageResultComponent;
     let fixture: ComponentFixture<ImageResultComponent>;
-    let imageStoreMock: jasmine.SpyObj<ImageStore>;
     let imageUploadServiceMock: jasmine.SpyObj<ImageUploadService>;
 
     beforeEach(async () => {
         spyOn(ImageUtils, "getImageDimensions").and.returnValue(of({ width: 600, height: 200 }))
 
-        imageStoreMock = jasmine.createSpyObj("ImageStore", ["setOriginalImage"], {
-            enhancedImage$: of("data:image/png"),
-            originalImage$: of("data:image/png"),
-            filters$: of({}),
-            isApplyingFilters$: of(false)
-        });
+        const imageStoreMock = {
+            originalImage: signal("data:image/png"),
+            enhancedImage: signal("data:image/png"),
+            filters: signal({ sepia: 0, brightness: 1 }),
+            isApplyingFilters: signal(false),
+            setOriginalImage: jasmine.createSpy('setOriginalImage')
+        };
         imageUploadServiceMock = jasmine.createSpyObj("ImageUploadService", ["handleImageUpload"]);
 
         await TestBed.configureTestingModule({

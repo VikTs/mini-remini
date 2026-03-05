@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, signal, WritableSignal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject, of } from 'rxjs';
 import { ImageProcessingComponent } from './image-processing.component';
@@ -11,14 +11,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 describe('ImageProcessingComponent', () => {
   let component: ImageProcessingComponent;
   let fixture: ComponentFixture<ImageProcessingComponent>;
-  let processStep$: BehaviorSubject<ProcessStep>;
-  let imageStoreMock: jasmine.SpyObj<ImageStore>;
+  let processStep: WritableSignal<ProcessStep>;
+  let imageStoreMock: Partial<{
+    processStep: ProcessStep;
+    processImage: jasmine.Spy<() => any>;
+  }>;
   let routerMock: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
-    processStep$ = new BehaviorSubject<ProcessStep>(ProcessStep.Initial);
-    imageStoreMock = jasmine.createSpyObj('ImageStore', ['processImage'], { processStep$ });
-    imageStoreMock.processImage.and.returnValue(of("image"));
+    imageStoreMock = {
+      processStep: ProcessStep.Initial,
+      processImage: jasmine.createSpy('processImage').and.returnValue(of('image')),
+    };
     routerMock = jasmine.createSpyObj("Router", ["navigate"]);
 
     await TestBed.configureTestingModule({
@@ -37,6 +41,10 @@ describe('ImageProcessingComponent', () => {
 
     fixture = TestBed.createComponent(ImageProcessingComponent);
     component = fixture.componentInstance;
+
+    processStep = signal<ProcessStep>(imageStoreMock.processStep!);
+    component.currentStep = processStep;
+
     fixture.detectChanges();
   });
 
@@ -45,7 +53,7 @@ describe('ImageProcessingComponent', () => {
   });
 
   it('should display Uploading step text', () => {
-    processStep$.next(ProcessStep.Uploading);
+    processStep.set(ProcessStep.Uploading);
     fixture.detectChanges();
 
     const title = fixture.debugElement.query(By.css('h2')).nativeElement;
@@ -53,7 +61,7 @@ describe('ImageProcessingComponent', () => {
   });
 
   it('should display Enhancing step text', () => {
-    processStep$.next(ProcessStep.Enhancing);
+    processStep.set(ProcessStep.Enhancing);
     fixture.detectChanges();
 
     const title = fixture.debugElement.query(By.css('h2')).nativeElement;
@@ -61,7 +69,7 @@ describe('ImageProcessingComponent', () => {
   });
 
   it('should display Done step text', () => {
-    processStep$.next(ProcessStep.Done);
+    processStep.set(ProcessStep.Done);
     fixture.detectChanges();
 
     const title = fixture.debugElement.query(By.css('h2')).nativeElement;
@@ -69,7 +77,7 @@ describe('ImageProcessingComponent', () => {
   });
 
   it('should display Error state with retry and home buttons', () => {
-    processStep$.next(ProcessStep.Error);
+    processStep.set(ProcessStep.Error);
     fixture.detectChanges();
 
     const retryButton = fixture.debugElement.query(By.css('.btn.primary')).nativeElement;
@@ -80,7 +88,7 @@ describe('ImageProcessingComponent', () => {
   });
 
   it('should call processImage() when click on retry button', () => {
-    processStep$.next(ProcessStep.Error);
+    processStep.set(ProcessStep.Error);
     fixture.detectChanges();
 
     const spy = spyOn(component, 'processImage');

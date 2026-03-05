@@ -4,7 +4,7 @@ import venv
 import urllib.request
 from config import VENV_DIR, MODEL_LOCAL_PATH, MODEL_URL, BASE_DIR, MODEL_DIR
 
-print("Crearing virtual environment...")
+print("Creating virtual environment...")
 if not VENV_DIR.exists():
     venv.create(VENV_DIR, with_pip=True)
 

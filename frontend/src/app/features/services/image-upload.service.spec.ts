@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 
 describe('ImageUploadService', () => {
     let service: ImageUploadService;
-    let imageStoreMock: jasmine.SpyObj<ImageStore>;
+    let imageStoreMock: Partial<{ setOriginalImage: jasmine.Spy<(base64: string) => void> }>;
     let dialogServiceMock: jasmine.SpyObj<DialogService>;
     let routerMock: jasmine.SpyObj<Router>;
 

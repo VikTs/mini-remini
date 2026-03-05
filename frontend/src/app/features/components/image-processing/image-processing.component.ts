@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, Signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { take } from 'rxjs';
@@ -16,18 +15,17 @@ import { ImageStore } from '../../../store/image/image-store';
     MatIconModule,
     TranslateModule,
     RouterModule
-],
+  ],
   templateUrl: './image-processing.component.html',
   styleUrl: './image-processing.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageProcessingComponent implements OnInit {
+  private imageStore = inject(ImageStore);
   ProcessStepEnum = ProcessStep;
-  currentStep: Signal<ProcessStep>;
+  currentStep = this.imageStore.processStep;
 
-  constructor(private imageStore: ImageStore, private router: Router) {
-    this.currentStep = toSignal(this.imageStore.processStep$, { initialValue: ProcessStep.Initial });
-  }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.processImage();

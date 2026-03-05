@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ImageStore } from '../../../store/image/image-store';
 import { ImageSliderComponent } from '../../../shared/components/image-slider/image-slider.component';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-image-comparison',
@@ -10,19 +9,15 @@ import { toSignal } from '@angular/core/rxjs-interop';
   imports: [
     MatIconModule,
     ImageSliderComponent
-],
+  ],
   templateUrl: './image-comparison.component.html',
   styleUrl: './image-comparison.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageComparisonComponent {
-  isLoading: Signal<boolean>;
-  beforeImage: Signal<string | null>;
-  afterImage: Signal<string | null>;
+  readonly imageStore = inject(ImageStore);
 
-  constructor(private imageStore: ImageStore) {
-    this.beforeImage = toSignal(this.imageStore.originalImage$, { initialValue: null });
-    this.afterImage = toSignal(this.imageStore.enhancedImage$, { initialValue: null });
-    this.isLoading = toSignal(this.imageStore.isApplyingFilters$, { initialValue: false });
-  }
+  readonly beforeImage = this.imageStore.originalImage;
+  readonly afterImage = this.imageStore.enhancedImage;
+  readonly isLoading = this.imageStore.isApplyingFilters;
 }

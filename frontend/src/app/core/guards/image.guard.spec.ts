@@ -1,48 +1,55 @@
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 import { Router } from '@angular/router';
-import { ImageGuard } from './image.guard'
+import { ImageGuard } from './image.guard';
 import { ImageStore } from '../../store/image/image-store';
 
 describe('ImageGuard', () => {
-    let guard: ImageGuard;
-    let routerMock: jasmine.SpyObj<Router>;
-    let imageStoreMock: jasmine.SpyObj<ImageStore>;
+  let guard: ImageGuard;
+  let routerMock: jasmine.SpyObj<Router>;
+  let imageStoreMock: Partial<{
+    originalImage: jasmine.Spy<() => string | null>;
+    enhancedImage: jasmine.Spy<() => string | null>;
+  }>;
 
-    beforeEach(async () => {
-        routerMock = jasmine.createSpyObj("Router", ["navigate"]);
-        imageStoreMock = jasmine.createSpyObj("ImageApiService", ["select"]);
+  beforeEach(() => {
 
-        await TestBed.configureTestingModule({
-            providers: [
-                ImageGuard,
-                {
-                    provide: ImageStore,
-                    useValue: imageStoreMock
-                },
-                {
-                    provide: Router,
-                    useValue: routerMock
-                }],
-        })
-            .compileComponents();
+    routerMock = jasmine.createSpyObj('Router', ['navigate']);
 
-        guard = TestBed.inject(ImageGuard);
+    imageStoreMock = {
+      originalImage: jasmine.createSpy('originalImage'),
+      enhancedImage: jasmine.createSpy('enhancedImage')
+    };
+
+    TestBed.configureTestingModule({
+      providers: [
+        ImageGuard,
+        { provide: ImageStore, useValue: imageStoreMock },
+        { provide: Router, useValue: routerMock }
+      ]
     });
 
-    it('should allow navigation if both originalImage and enhancedImage are set', async () => {
-        imageStoreMock.select.and.returnValue(of(true));
-        const result = await guard.canActivate();
+    guard = TestBed.inject(ImageGuard);
 
-        expect(result).toBeTrue();
-        expect(routerMock.navigate).not.toHaveBeenCalled();
-    });
+  });
 
-    it('should block navigation and redirect if images are missing', async () => {
-        imageStoreMock.select.and.returnValue(of(false));
-        const result = await guard.canActivate();
+  it('should allow navigation if both originalImage and enhancedImage are set', async () => {
+    imageStoreMock.originalImage! = jasmine.createSpy().and.returnValue('some-image.jpg');
+    imageStoreMock.enhancedImage! = jasmine.createSpy().and.returnValue('enhanced.jpg');
 
-        expect(result).toBeFalse();
-        expect(routerMock.navigate).toHaveBeenCalledWith(["/"]);
-    });
+    const result = await guard.canActivate();
+
+    expect(result).toBeTrue();
+    expect(routerMock.navigate).not.toHaveBeenCalled();
+  });
+
+  it('should block navigation and redirect if images are missing', async () => {
+    imageStoreMock.originalImage! = jasmine.createSpy().and.returnValue(null);
+    imageStoreMock.enhancedImage! = jasmine.createSpy().and.returnValue(null);
+
+    const result = await guard.canActivate();
+
+    expect(result).toBeFalse();
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
+  });
+
 });

@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
-import { ImageStore } from '../../../store/image/image-store';
 import { ImageUploadDirective } from '../../../core/directives/image-upload.directive';
 import { ImageUploadService } from '../../services/image-upload.service';
+import { ImageStore } from '../../../store/image/image-store';
 
 @Component({
   selector: 'app-image-upload',
@@ -22,8 +22,9 @@ import { ImageUploadService } from '../../services/image-upload.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageUploadComponent implements OnInit {
+  private imageStore = inject(ImageStore);
+
   constructor(
-    private imageStore: ImageStore,
     private imageUploadService: ImageUploadService,
   ) { }
 

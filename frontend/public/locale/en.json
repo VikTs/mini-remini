@@ -27,11 +27,11 @@
   "processing": {
     "uploading": {
       "title": "Uploading the image ...",
-      "subtitle": "Sending the image to remote service"
+      "subtitle": "Sending the image to remote service. This can take a couple of minutes."
     },
     "enhancing": {
       "title": "Enhancing the image ...",
-      "subtitle": "Handling the image by AI. This can take some time"
+      "subtitle": "Handling the image. This can take some time"
     },
     "done": {
       "title": "Image is ready",
@@ -45,15 +45,19 @@
   "filtersPanel": {
     "title": "Toolbar",
     "filters": {
-      "brightness": "Brightness",
-      "contrast": "Contrast",
-      "upscale": "Upscale",
-      "arch": {
-        "name": "Face restoration",
+      "color_correction": {
+        "name": "Color correction",
         "options": {
-          "clean": "Clean face"
+          "no_filter": "No filter",
+          "warm": "Warm",
+          "cool": "Cool",
+          "vintage": "Vintage",
+          "cinematic": "Cinematic"
         }
-      }
+      },
+      "face_beauty": "Face beauty",
+      "restore_photo": "Restore photo",
+      "upscale": "Resolution"
     },
     "groups": {
       "enhancement": {
@@ -61,8 +65,8 @@
         "description": "Enhance the image"
       },
       "lighting": {
-        "name": "Lighting & Exposure",
-        "description": "Regulate light"
+        "name": "Color Tone",
+        "description": "Regulate hue and light"
       }
     }
   },

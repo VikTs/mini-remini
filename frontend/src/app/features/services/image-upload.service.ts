@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { ImageUtils } from "../../shared/utils/image.utils";
 import { take } from "rxjs";
 import { ImageStore } from "../../store/image/image-store";
@@ -9,8 +9,9 @@ import { DialogService } from "../../shared/services/dialog.service";
     providedIn: 'root',
 })
 export class ImageUploadService {
+    private imageStore = inject(ImageStore);
+
     constructor(
-        private imageStore: ImageStore,
         private router: Router,
         private dialogService: DialogService
     ) { }

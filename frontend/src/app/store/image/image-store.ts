@@ -1,108 +1,127 @@
-import { ComponentStore } from "@ngrx/component-store";
-import { catchError, delay, finalize, Observable, switchMap, tap } from "rxjs";
-import { Injectable } from "@angular/core";
-import { defaultFilters } from "../../features/models/image-filters.constant";
-import { ImageFilters } from "../../features/models/image-filters.model";
-import { ImageState, ProcessStep } from "./image-state.model";
-import { ImageApiService } from "../../features/services/image-api.service";
+import { inject } from '@angular/core';
+import {
+    signalStore,
+    withState,
+    withMethods,
+    patchState
+} from '@ngrx/signals';
+import { delay, finalize, switchMap, tap, catchError, of, throwError } from 'rxjs';
+
+import { defaultFilters } from '../../features/models/image-filters.constant';
+import { ImageFilters } from '../../features/models/image-filters.model';
+import { ImageState, ProcessStep } from './image-state.model';
+import { ImageApiService } from '../../features/services/image-api.service';
 
 const initialState: ImageState = {
     originalImage: null,
     enhancedImage: null,
     processStep: ProcessStep.Initial,
     filters: { ...defaultFilters },
-    isApplyingFilters: false,
-}
+    isApplyingFilters: false
+};
 
-@Injectable({ providedIn: 'root' })
-export class ImageStore extends ComponentStore<ImageState> {
-    constructor(private imageApiService: ImageApiService) {
-        super(initialState);
-    }
+export const ImageStore = signalStore(
+    { providedIn: 'root' },
 
-    readonly originalImage$ = this.select(state => state.originalImage);
-    readonly enhancedImage$ = this.select(state => state.enhancedImage);
-    readonly processStep$ = this.select(state => state.processStep);
-    readonly filters$ = this.select(state => state.filters);
-    readonly isApplyingFilters$ = this.select(state => state.isApplyingFilters);
+    withState(initialState),
 
-    readonly setOriginalImage = this.updater<string | null>((state, originalImage) => ({
-        ...state,
-        originalImage,
-        enhancedImage: null,
-        processStep: ProcessStep.Initial,
-        filters: { ...defaultFilters }
-    }));
+    withMethods((store, api = inject(ImageApiService)) => ({
 
-    readonly setEnhancedImage = this.updater<string | null>((state, enhancedImage) => ({
-        ...state,
-        enhancedImage
-    }));
+        setOriginalImage(originalImage: string | null) {
+            patchState(store, {
+                originalImage,
+                enhancedImage: null,
+                processStep: ProcessStep.Initial,
+                filters: { ...defaultFilters }
+            });
+        },
 
-    readonly setProcessStep = this.updater<ProcessStep>((state, processStep) => ({
-        ...state,
-        processStep
-    }));
+        setEnhancedImage(enhancedImage: string | null) {
+            patchState(store, { enhancedImage });
+        },
 
-    readonly setFilters = this.updater<ImageFilters>((state, filters) => ({
-        ...state,
-        filters
-    }));
+        setProcessStep(processStep: ProcessStep) {
+            patchState(store, { processStep });
+        },
 
-    readonly setIsApplyingFilters = this.updater<boolean>((state, isApplyingFilters) => ({
-        ...state,
-        isApplyingFilters
-    }));
+        setFilters(filters: ImageFilters) {
+            patchState(store, { filters });
+        },
 
-    readonly processImage = (): Observable<string | null> =>
-        this.originalImage$
-            .pipe(
+        setIsApplyingFilters(isApplyingFilters: boolean) {
+            patchState(store, { isApplyingFilters });
+        },
+
+        processImage() {
+            const image = store.originalImage();
+
+            if (!image) {
+                return throwError(() => new Error('No image found'));
+            }
+
+            patchState(store, { processStep: ProcessStep.Uploading });
+
+            return api.upload(image).pipe(
+
                 switchMap((image) => {
-                    if (!image) throw new Error('No image found');
+                    const filters = store.filters();
 
-                    this.setProcessStep(ProcessStep.Uploading);
-                    return this.imageApiService.upload(image);
+                    patchState(store, { processStep: ProcessStep.Enhancing });
+
+                    return api.applyFilters(image, filters);
                 }),
-                switchMap((image) => {
-                    const filters = this.get(state => state.filters);
-                    this.setProcessStep(ProcessStep.Enhancing);
-                    return this.imageApiService.enhance(image, filters);
-                }),
+
                 tap((image) => {
-                    this.setEnhancedImage(image);
-                    this.setProcessStep(ProcessStep.Done);
+                    patchState(store, {
+                        enhancedImage: image,
+                        processStep: ProcessStep.Done
+                    });
                 }),
-                delay(500), // Delay for showing Done step
+
+                delay(500),
+
                 catchError((error) => {
-                    this.setProcessStep(ProcessStep.Error);
-                    throw new Error(error);
+                    patchState(store, { processStep: ProcessStep.Error });
+                    return throwError(() => error);
                 })
             );
+        },
 
-    readonly applyFilters = (filters: ImageFilters): Observable<string | null> => {
-        this.setIsApplyingFilters(true);
+        applyFilters(filters: ImageFilters) {
+            const image = store.originalImage();
 
-        return this.originalImage$
-            .pipe(
-                switchMap((image) => {
-                    if (!image) throw new Error('No image found');
+            if (!image) {
+                return throwError(() => new Error('No image found'));
+            }
 
-                    // Always use original image for applying filters
-                    return this.imageApiService.applyFilters(image, filters);
-                }),
+            patchState(store, { isApplyingFilters: true });
+
+            // Always use original image for applying filters
+
+            return api.applyFilters(image, filters).pipe(
+
                 tap((image) => {
-                    this.setFilters(filters);
-                    this.setEnhancedImage(image);
+                    patchState(store, {
+                        filters,
+                        enhancedImage: image
+                    });
                 }),
-                finalize(() => this.setIsApplyingFilters(false))
-            )
-    };
 
-    readonly reset = this.updater<void>(() => ({
-        originalImage: null,
-        enhancedImage: null,
-        processStep: ProcessStep.Initial,
-        filters: { ...defaultFilters },
-        isApplyingFilters: false
-    }));
-}
+                finalize(() => {
+                    patchState(store, { isApplyingFilters: false });
+                })
+            );
+        },
+
+        reset() {
+            patchState(store, {
+                originalImage: null,
+                enhancedImage: null,
+                processStep: ProcessStep.Initial,
+                filters: { ...defaultFilters },
+                isApplyingFilters: false
+            });
+        }
+
+    }))
+);

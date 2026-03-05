@@ -1,12 +1,10 @@
 # Frontend
 
-All the frontend files are placed inside /frontend folder.
-
 ## Architecture
 
-The project is built with Angular 20 and uses the modern architecture optimized for scalability and maintability. 
+The project is built with Angular 21 and uses the modern architecture optimized for scalability and maintability. 
 - State management
-  - The app state is managed using [@ngrx/component-store](https://ngrx.io/guide/component-store)
+  - The app state is managed using [Signal Store](https://ngrx.io/guide/signals/signal-store)
 - Standalone components
   - The app is implemented entirely using [Angular standalone components](https://v17.angular.io/guide/standalone-components)
   - Communication between components is handled via state management

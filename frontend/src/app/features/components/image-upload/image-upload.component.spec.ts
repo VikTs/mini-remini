@@ -7,7 +7,10 @@ import { ImageUploadService } from '../../services/image-upload.service';
 describe('ImageUpload', () => {
     let component: ImageUploadComponent;
     let fixture: ComponentFixture<ImageUploadComponent>;
-    let imageStoreMock: jasmine.SpyObj<ImageStore>;
+    let imageStoreMock: Partial<{
+        reset: jasmine.Spy<() => void>;
+        setOriginalImage: jasmine.Spy<(image: string | null) => void>;
+    }>;
     let imageUploadServiceMock: jasmine.SpyObj<ImageUploadService>;
 
     beforeEach(async () => {

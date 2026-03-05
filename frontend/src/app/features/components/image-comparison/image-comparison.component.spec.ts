@@ -8,17 +8,20 @@ import { TranslateTestModule } from '../../../testing/translate-test.module';
 describe('ImageComparisonComponent', () => {
     let component: ImageComparisonComponent;
     let fixture: ComponentFixture<ImageComparisonComponent>;
-    let imageStoreMock: jasmine.SpyObj<ImageStore>;
+    let imageStoreMock: Partial<{
+        originalImage: jasmine.Spy<() => string | null>;
+        enhancedImage: jasmine.Spy<() => string | null>;
+        filters: jasmine.Spy<() => any>;
+        isApplyingFilters: jasmine.Spy<() => boolean>;
+    }>;
 
     beforeEach(async () => {
-        imageStoreMock = jasmine.createSpyObj<ImageStore>("ImageStore", [], {
-            enhancedImage$: of('data:image/png'),
-            originalImage$: of('data:image/png'),
-            filters$: of({
-                sepia: 1,
-            }),
-            isApplyingFilters$: of(false)
-        });
+        imageStoreMock = {
+            originalImage: jasmine.createSpy('originalImage').and.returnValue('data:image/png'),
+            enhancedImage: jasmine.createSpy('enhancedImage').and.returnValue('data:image/png'),
+            filters: jasmine.createSpy('filters').and.returnValue({ sepia: 1 }),
+            isApplyingFilters: jasmine.createSpy('isApplyingFilters').and.returnValue(false),
+        };
 
         await TestBed.configureTestingModule({
             imports: [ImageComparisonComponent, TranslateTestModule],

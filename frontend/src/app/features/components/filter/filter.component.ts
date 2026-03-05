@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { FilterConfig } from '../../models/image-filters.model';
@@ -10,7 +10,7 @@ import { FilterConfig } from '../../models/image-filters.model';
   imports: [
     TranslateModule,
     MatSliderModule,
-    MatRadioModule,
+    MatSlideToggleModule,
     ReactiveFormsModule
 ],
   templateUrl: './filter.component.html',
@@ -18,14 +18,14 @@ import { FilterConfig } from '../../models/image-filters.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterComponent {
-  @Input() filter!: FilterConfig<any>;
+  @Input() filter!: FilterConfig;
   @Input() form!: FormGroup;
 
-  getControlValue(name: string): number | string {
+  getControlValue(name: string): number {
     return this.form.get(name)?.value ?? 0;
   }
 
-  getFilterValue(filter: FilterConfig<any>, value: string | number): string {
-    return filter.valueBuilder(value);
+  getFilterValue(filter: FilterConfig, value: number): string {
+    return filter.valueBuilder?.(value) || "";
   }
 }

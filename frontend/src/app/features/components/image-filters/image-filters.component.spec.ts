@@ -11,7 +11,12 @@ import { signal } from '@angular/core';
 describe('ImageFiltersComponent', () => {
     let component: ImageFiltersComponent;
     let fixture: ComponentFixture<ImageFiltersComponent>;
-    let imageStoreMock: jasmine.SpyObj<ImageStore>;
+    let imageStoreMock: Partial<{
+        filters: jasmine.Spy<() => any>;
+        isApplyingFilters: jasmine.Spy<() => boolean>;
+        enhancedImage: jasmine.Spy<() => string | null>;
+        applyFilters: jasmine.Spy<(filters: any) => any>;
+    }>;
     let dialogServiceMock: jasmine.SpyObj<DialogService>;
 
     const defaultFilters = {
@@ -22,11 +27,12 @@ describe('ImageFiltersComponent', () => {
     };
 
     beforeEach(async () => {
-        imageStoreMock = jasmine.createSpyObj<ImageStore>("ImageStore", ["applyFilters"], {
-            filters$: of(defaultFilters),
-            isApplyingFilters$: of(false),
-            enhancedImage$: of(null)
-        });
+        imageStoreMock = {
+            filters: jasmine.createSpy('filters').and.returnValue(defaultFilters),
+            isApplyingFilters: jasmine.createSpy('isApplyingFilters').and.returnValue(false),
+            enhancedImage: jasmine.createSpy('enhancedImage').and.returnValue(null),
+            applyFilters: jasmine.createSpy('applyFilters')
+        };
         dialogServiceMock = jasmine.createSpyObj<DialogService>("DialogService", ["openErrorDialog"]);
 
         await TestBed.configureTestingModule({
@@ -54,7 +60,7 @@ describe('ImageFiltersComponent', () => {
     });
 
     it('should call applyFilters when apply button is clicked', () => {
-        imageStoreMock.applyFilters.and.returnValue(of(null));
+        imageStoreMock.applyFilters!.and.returnValue(of(null));
         component.form.get("sepia")?.setValue(1);
         fixture.detectChanges();
 
@@ -82,7 +88,7 @@ describe('ImageFiltersComponent', () => {
     });
 
     it('should open error dialog when applyFilters fails', () => {
-        imageStoreMock.applyFilters.and.returnValue(throwError(() => { throw new Error("") }));
+        imageStoreMock.applyFilters!.and.returnValue(throwError(() => { throw new Error("") }));
         component.form.get("sepia")?.setValue(1);
         fixture.detectChanges();
 

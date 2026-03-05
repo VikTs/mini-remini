@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatCardModule } from '@angular/material/card';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,30 +18,29 @@ import { FilterGroupComponent } from '../filter-group/filter-group.component';
     MatCardModule,
     TranslateModule,
     ReactiveFormsModule
-],
+  ],
   templateUrl: './image-filters.component.html',
   styleUrl: './image-filters.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageFiltersComponent {
+  private imageStore = inject(ImageStore);
+
   form!: FormGroup;
   isDisabled!: Signal<boolean>;
-  resultImage: Signal<string | null>;
   filtersConfig = filtersConfig;
 
   constructor(
-    private imageStore: ImageStore,
     private dialogService: DialogService,
     private fb: FormBuilder
   ) {
-    this.resultImage = toSignal(this.imageStore.enhancedImage$, { initialValue: null });
     this.initForm();
   }
 
   initForm(): void {
-    const isApplyingFilters = toSignal(this.imageStore.isApplyingFilters$, { initialValue: false });
-    const storeFilters = toSignal(this.imageStore.filters$, { initialValue: {} });
-    
+    const isApplyingFilters = this.imageStore.isApplyingFilters;
+    const storeFilters = this.imageStore.filters;
+
     this.form = this.fb.group(storeFilters());
     const formValue = toSignal(
       this.form.valueChanges,
