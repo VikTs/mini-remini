@@ -6,4 +6,4 @@ class ImageData(BaseModel):
 
 class ImageFiltersData(BaseModel): 
     image: str
-    filters: Dict[str, Union[float, str]]
+    filters: Dict[str, Union[float, str, bool]]

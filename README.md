@@ -1,4 +1,4 @@
-# MiniRemini ![v2.1.0](https://img.shields.io/badge/v2.1.0-gray)
+# MiniRemini ![v3.0.0](https://img.shields.io/badge/v3.0.0-gray)
 
 ![Angular](https://img.shields.io/badge/Angular-21.2-red)
 ![NodeJs](https://img.shields.io/badge/NodeJs-24.12-blue)
@@ -10,22 +10,25 @@ Mini-Remini is a web application for enhancing the image. It was inspired by [Re
 
 ## Features
 - Upload the image using file selection or drag and drop
-- Process the image with [GFPGAN](https://github.com/TencentARC/GFPGAN)
-- Choose the filters and apply them to the image
+- Process the image with default filters
+- Choose the filters and apply them to the image:
+  - Photo restoration using [GFPGAN](https://github.com/TencentARC/GFPGAN) AI model
+  - Face beauty using [Insightface](https://www.insightface.ai/) and [OpenCV](https://pypi.org/project/opencv-python/)
+  - Color correction
 - View the filtered image in the before/after slider
 - Download the enhanced image
 
 ## Upcoming features
 ### Next version
-- Configure AI model filters:
-  - Face restoration
-  - Background upsample
+- Add deeper configuration of the filters:
+  - Face beauty
+  - Restore photo
+- Investigate background AI filters
 
 ### Later versions
 - Image caching
 - Use websockets for processing the image:
   - BE return the statuses
-- Combine /enhance and /applyFilters endpoints
 - Store the image on BE:
   - Use image id for the requests
 - Zooming the image with canvas
@@ -35,7 +38,7 @@ Mini-Remini is a web application for enhancing the image. It was inspired by [Re
 
 This project consists of two parts:
 - [Frontend (Angular)](./frontend/README.md) - UI for uploading, processing and displaying the image
-- [Backend (Python)](./backend/README.md) - API server that handles image enhancement using GFPGAN
+- [Backend (Python)](./backend/README.md) - API server that handles image enhancement using AI
 
 ## Getting started
 

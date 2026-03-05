@@ -11,13 +11,51 @@
 
 .filter-name,
 .filter-value {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     font-weight: 500;
 }
 
-.radio-btn-group {
+.filter-button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.filter-button {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin: 3px 0;
+    cursor: pointer;
+}
+
+.filter-button-img {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    margin-bottom: 4px;
+    border: 3px solid transparent;
+    border-radius: 4px;
+
+    &.active {
+        border-color: #fdfdfd;
+    }
+}
+
+.filter-toggle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.text {
+    font-size: 12px;
+    margin: 0;
 }
 
 ::ng-deep .mdc-label {

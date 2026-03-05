@@ -1,14 +1,10 @@
 import { FilterGroupConfig, ImageFilters } from "./image-filters.model";
 
 export const defaultFilters: ImageFilters = {
-  brightness: 1,
-  contrast: 1,
   upscale: 2,
-  arch: "clean",
-}
-
-export const archValues = {
-  clean: "filtersPanel.filters.arch.options.clean",
+  faceBeauty: true,
+  restorePhoto: false,
+  colorCorrection: "none",
 }
 
 export const filtersConfig: FilterGroupConfig[] = [
@@ -18,6 +14,16 @@ export const filtersConfig: FilterGroupConfig[] = [
     icon: "star_half",
     filters: [
       {
+        id: "faceBeauty",
+        type: "toggle",
+        name: "filtersPanel.filters.face_beauty",
+      },
+      {
+        id: "restorePhoto",
+        type: "toggle",
+        name: "filtersPanel.filters.restore_photo",
+      },
+      {
         id: "upscale",
         minValue: 1,
         maxValue: 4,
@@ -25,38 +31,25 @@ export const filtersConfig: FilterGroupConfig[] = [
         type: "slider",
         name: "filtersPanel.filters.upscale",
         valueBuilder: (value: number) => `${value.toFixed(0)}x`
-      },
-      {
-        id: "arch",
-        values: Object.keys(archValues),
-        type: "radio",
-        name: "filtersPanel.filters.arch.name",
-        valueBuilder: (value: string) => archValues[value as keyof typeof archValues]
       }
     ]
   },
   {
     name: "filtersPanel.groups.lighting.name",
     description: "filtersPanel.groups.lighting.description",
-    icon: "exposure",
+    icon: "palette",
     filters: [
       {
-        id: "brightness",
-        minValue: 0,
-        maxValue: 2,
-        step: 0.1,
-        type: "slider",
-        name: "filtersPanel.filters.brightness",
-        valueBuilder: (value: number) => `${(value * 100 - 100).toFixed(0)}%`
-      },
-      {
-        id: "contrast",
-        minValue: 0,
-        maxValue: 2,
-        step: 0.1,
-        type: "slider",
-        name: "filtersPanel.filters.contrast",
-        valueBuilder: (value: number) => `${(value * 100 - 100).toFixed(0)}%`
+        id: "colorCorrection",
+        type: "button",
+        name: "filtersPanel.filters.color_correction.name",
+        values: [
+          { id: "none", name: "filtersPanel.filters.color_correction.options.no_filter", image: "/images/deny-circle.png" },
+          { id: "warm", name: "filtersPanel.filters.color_correction.options.warm", image: "/images/color-correction/warm.png" },
+          { id: "cool", name: "filtersPanel.filters.color_correction.options.cool", image: "/images/color-correction/cool.png" },
+          { id: "vintage", name: "filtersPanel.filters.color_correction.options.vintage", image: "/images/color-correction/vintage.png" },
+          { id: "cinematic", name: "filtersPanel.filters.color_correction.options.cinematic", image: "/images/color-correction/cinematic.png" },
+        ],
       },
     ]
   }

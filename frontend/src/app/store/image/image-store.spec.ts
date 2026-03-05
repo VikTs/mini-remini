@@ -64,7 +64,7 @@ describe('ImageStore', () => {
         const enhancedImage = "enhancedImage.jpg";
 
         imageApiServiceMock.upload.and.returnValue(of(uploadedImage));
-        imageApiServiceMock.enhance.and.returnValue(of(enhancedImage));
+        imageApiServiceMock.applyFilters.and.returnValue(of(enhancedImage));
 
         store.setOriginalImage("originalImage.jpg");
 

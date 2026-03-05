@@ -27,17 +27,6 @@ export class ImageApiService {
         )
     }
 
-    enhance(image: string, filters: ImageFilters): Observable<string> {
-        return this.http.post<ImageResponse>(`${this.url}/enhance`, { image, filters }, {
-            headers: { 'Content-Type': 'application/json' }
-        }).pipe(
-            map((data) => data.image),
-            catchError(() => {
-                throw new Error('Error with enhancing the image');
-            })
-        )
-    }
-
     applyFilters(image: string, filters: ImageFilters): Observable<string> {
         return this.http.post<ImageResponse>(`${this.url}/applyFilters`, { image, filters }, {
             headers: { 'Content-Type': 'application/json' }
