@@ -12,7 +12,7 @@ import { FilterConfig } from '../../models/image-filters.model';
     MatSliderModule,
     MatSlideToggleModule,
     ReactiveFormsModule
-  ],
+],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
