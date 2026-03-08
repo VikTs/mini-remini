@@ -27,7 +27,7 @@
   "processing": {
     "uploading": {
       "title": "Uploading the image ...",
-      "subtitle": "Sending the image to remote service"
+      "subtitle": "Sending the image to remote service. This can take a couple of minutes."
     },
     "enhancing": {
       "title": "Enhancing the image ...",
