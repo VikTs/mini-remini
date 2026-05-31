@@ -44,11 +44,11 @@ export const filtersConfig: FilterGroupConfig[] = [
         type: "button",
         name: "filtersPanel.filters.color_correction.name",
         values: [
-          { id: "none", name: "filtersPanel.filters.color_correction.options.no_filter", image: "/images/deny-circle.png" },
-          { id: "warm", name: "filtersPanel.filters.color_correction.options.warm", image: "/images/color-correction/warm.png" },
-          { id: "cool", name: "filtersPanel.filters.color_correction.options.cool", image: "/images/color-correction/cool.png" },
-          { id: "vintage", name: "filtersPanel.filters.color_correction.options.vintage", image: "/images/color-correction/vintage.png" },
-          { id: "cinematic", name: "filtersPanel.filters.color_correction.options.cinematic", image: "/images/color-correction/cinematic.png" },
+          { id: "none", name: "filtersPanel.filters.color_correction.options.no_filter", image: "images/deny-circle.png" },
+          { id: "warm", name: "filtersPanel.filters.color_correction.options.warm", image: "images/color-correction/warm.png" },
+          { id: "cool", name: "filtersPanel.filters.color_correction.options.cool", image: "images/color-correction/cool.png" },
+          { id: "vintage", name: "filtersPanel.filters.color_correction.options.vintage", image: "images/color-correction/vintage.png" },
+          { id: "cinematic", name: "filtersPanel.filters.color_correction.options.cinematic", image: "images/color-correction/cinematic.png" },
         ],
       },
     ]
