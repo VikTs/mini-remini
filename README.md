@@ -1,4 +1,4 @@
-# MiniRemini ![v3.0.0](https://img.shields.io/badge/v3.0.0-gray)
+# MiniRemini
 
 ![Angular](https://img.shields.io/badge/Angular-21.2-red)
 ![NodeJs](https://img.shields.io/badge/NodeJs-24.12-blue)
@@ -6,7 +6,6 @@
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 
 Mini-Remini is a web application for enhancing the image. It was inspired by [Remini](https://app.remini.ai/).
-
 
 ## Features
 - Upload the image using file selection or drag and drop
@@ -17,22 +16,6 @@ Mini-Remini is a web application for enhancing the image. It was inspired by [Re
   - Color correction
 - View the filtered image in the before/after slider
 - Download the enhanced image
-
-## Upcoming features
-### Next version
-- Add deeper configuration of the filters:
-  - Face beauty
-  - Restore photo
-- Investigate background AI filters
-
-### Later versions
-- Image caching
-- Use websockets for processing the image:
-  - BE return the statuses
-- Store the image on BE:
-  - Use image id for the requests
-- Zooming the image with canvas
-- Create own AI model based on GFPGAN
 
 ## Project structure
 
