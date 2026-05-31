@@ -1,3 +1,9 @@
+:host {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
 .container {
     height: 100%;
     width: 100%;
@@ -7,10 +13,26 @@
     background-size: cover;
 }
 
-.image-upload-section {
-    position: absolute;
-    right: 0;
+.layout {
+    display: flex;
+    height: 100%;
     width: 100%;
+}
+
+.comparison-panel {
+    flex: 0 0 50%;
+    height: 100%;
+    overflow: hidden;
+
+    app-image-comparison {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.image-upload-section {
+    flex: 0 0 50%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -26,21 +48,33 @@
     cursor: pointer;
     z-index: 1;
 
-    border: 2px dashed #9e9e9e;
-    background-color: rgba(255, 255, 255, 0.5);
+    border: 1.5px dashed #9e9e9e;
+    background-color: rgba(255, 255, 255, 0.3);
     box-shadow: none;
 
     &:hover {
-        border-color: #7b61ff;
-        background-color: rgba(255, 255, 255, 0.3);
+        border-color: #8d77f6;
+        background-color: rgba(255, 255, 255, 0.2);
         transition: background-color 0.3s ease, border-color 0.3s ease;
     }
 }
 
+.title.h1 {
+    font-size: 2.5rem;
+}
+
 .subtitle {
+    font-size: 1.5rem;
     margin-bottom: 2rem;
     max-width: 550px;
     text-align: center;
+}
+
+.text { 
+    font-size: 1.2rem;
+    &.small {
+        font-size: 0.8rem;
+    }
 }
 
 .image-upload-card-content {

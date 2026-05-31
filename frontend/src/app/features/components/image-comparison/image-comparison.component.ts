@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ImageStore } from '../../../store/image/image-store';
 import { ImageSliderComponent } from '../../../shared/components/image-slider/image-slider.component';
@@ -17,7 +17,8 @@ import { ImageSliderComponent } from '../../../shared/components/image-slider/im
 export class ImageComparisonComponent {
   readonly imageStore = inject(ImageStore);
 
-  readonly beforeImage = this.imageStore.originalImage;
-  readonly afterImage = this.imageStore.enhancedImage;
-  readonly isLoading = this.imageStore.isApplyingFilters;
+  readonly imageObjectFit = input<string>("contain");
+  readonly beforeImage = input<string | null>(null);
+  readonly afterImage = input<string | null>(null);
+  readonly isLoading = input<boolean>(false);
 }

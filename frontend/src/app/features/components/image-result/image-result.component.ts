@@ -25,7 +25,7 @@ import { ImageFiltersComponent } from "../image-filters/image-filters.component"
   styleUrl: './image-result.component.scss'
 })
 export class ImageResultComponent {
-  private imageStore = inject(ImageStore);
+  readonly imageStore = inject(ImageStore);
 
   resultImage = this.imageStore.enhancedImage;
   imageDimensions: WritableSignal<{ width: number; height: number } | null> = signal(null);

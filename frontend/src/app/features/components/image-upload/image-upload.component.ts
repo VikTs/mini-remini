@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ImageUploadDirective } from '../../../core/directives/image-upload.directive';
 import { ImageUploadService } from '../../services/image-upload.service';
 import { ImageStore } from '../../../store/image/image-store';
+import { ImageComparisonComponent } from '../image-comparison/image-comparison.component';
 
 @Component({
   selector: 'app-image-upload',
@@ -15,14 +16,15 @@ import { ImageStore } from '../../../store/image/image-store';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    TranslateModule
+    TranslateModule,
+    ImageComparisonComponent,
   ],
   templateUrl: './image-upload.component.html',
   styleUrl: './image-upload.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageUploadComponent implements OnInit {
-  private imageStore = inject(ImageStore);
+  readonly imageStore = inject(ImageStore);
 
   constructor(
     private imageUploadService: ImageUploadService,
@@ -35,8 +37,8 @@ export class ImageUploadComponent implements OnInit {
   onUploadImage(event: Event): void {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
-    
+
     this.imageUploadService.handleImageUpload(file);
-    input.value = "";
+    input.value = '';
   }
 }
