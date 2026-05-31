@@ -1,10 +1,27 @@
 from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
-from utils.image_filters import apply_filters
+from contextlib import asynccontextmanager
 from schemas.image import ImageData, ImageFiltersData
+from utils.image_filters import apply_filters
+import asyncio
 import time
 
-app = FastAPI()
+def _warmup_models():
+    try:
+        from utils.face_filters import _get_face_app
+        from utils.photo_restore import _get_gfpgan
+        _get_face_app()
+        _get_gfpgan(upscale=2)
+    except Exception as e:
+        print(f"Warmup failed: {e}")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    loop = asyncio.get_event_loop()
+    loop.run_in_executor(None, _warmup_models)
+    yield
+
+app = FastAPI(lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -13,6 +30,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 api_router = APIRouter(prefix="/api")
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
 @api_router.post("/upload")
 def upload_image(data: ImageData):
