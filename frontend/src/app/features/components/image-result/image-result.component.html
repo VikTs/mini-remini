@@ -2,14 +2,13 @@
   <div class="header">
     <button class="btn secondary home-btn" routerLink="/"><mat-icon class="icon">home</mat-icon></button>
     @if (resultImage(); as image) {
-      <div class="download">
-        <a [href]="image" download="enhanced-image.png" style="display: none;" class="download-link"
-        #imgDownload></a>
-        <button class="btn primary download-btn" (click)="imgDownload.click();">
-          {{"result.download_label" | translate}}
-          <mat-icon class="icon">download</mat-icon>
-        </button>
-      </div>
+    <div class="download">
+      <a [href]="image" download="enhanced-image.png" style="display: none;" class="download-link" #imgDownload></a>
+      <button class="btn primary download-btn" (click)="imgDownload.click();">
+        {{"result.download_label" | translate}}
+        <mat-icon class="icon">download</mat-icon>
+      </button>
+    </div>
     }
   </div>
   <div class="content">
@@ -17,14 +16,16 @@
       <app-image-filters></app-image-filters>
     </div>
     <div class="image-comparison-section">
-      <app-image-comparison></app-image-comparison>
+      <app-image-comparison [beforeImage]="imageStore.originalImage()" [afterImage]="imageStore.enhancedImage()"
+        [isLoading]="imageStore.isApplyingFilters()">
+      </app-image-comparison>
     </div>
   </div>
   <div class="footer">
     <div class="image-dimentions">
       <span class="text">
         <b>{{"result.width_label" | translate}}:</b>
-      {{imageDimensions()?.width ?? "-" }}px</span>
+        {{imageDimensions()?.width ?? "-" }}px</span>
       <span class="text">
         <b>{{"result.height_label" | translate}}:</b>
         {{imageDimensions()?.height ?? "-" }}px
