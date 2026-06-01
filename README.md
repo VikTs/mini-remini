@@ -36,6 +36,6 @@ The live demo is available here: https://vikts.github.io/mini-remini/
 
 > **Note**: The online demo may currently be unavailable.
 > 
-> The backend is hosted on **Render (free tier)** which provides limited resources.
+> The backend is hosted on **Huggingface (free tier)** which provides limited resources.
 > Since the app performs **AI-based image processing**, some requests may take a long time to complete or timeout.
 > For the best results and functionality it`s recommended to **run the project locally**

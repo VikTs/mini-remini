@@ -8,3 +8,6 @@ venv/
 # AI models files
 gfpgan
 pretrained_models/*.pth
+
+# Local config
+hugging-face.txt
