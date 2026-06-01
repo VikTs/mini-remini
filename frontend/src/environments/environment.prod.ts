@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: "https://mini-remini-backend.onrender.com/api",
+    apiUrl: "https://viktsukan-mini-remini.hf.space/api",
     baseHref: '/mini-remini/'
 }
