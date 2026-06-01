@@ -31,6 +31,13 @@ print('Downloading GFPGAN model...'); \
 urllib.request.urlretrieve('https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.3.pth', model_path); \
 print('Done.')"
 
+RUN python -c "\
+import insightface; \
+from insightface.app import FaceAnalysis; \
+app = FaceAnalysis(name='buffalo_l'); \
+app.prepare(ctx_id=-1); \
+print('Insightface model ready.')"
+
 EXPOSE 8000
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
