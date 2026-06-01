@@ -24,24 +24,6 @@
       "message": "Please try to upload another image"
     }
   },
-  "processing": {
-    "uploading": {
-      "title": "Uploading the image ...",
-      "subtitle": "Sending the image to remote service. This can take a couple of minutes."
-    },
-    "enhancing": {
-      "title": "Enhancing the image ...",
-      "subtitle": "Handling the image. This can take some time"
-    },
-    "done": {
-      "title": "Image is ready",
-      "subtitle": "It will be available in a moment"
-    },
-    "error": {
-      "title": "Something went wrong",
-      "subtitle": "We couldn`t process your image. Please try again or back to home"
-    }
-  },
   "filtersPanel": {
     "title": "Toolbar",
     "filters": {
@@ -75,5 +57,15 @@
     "download_label": "Download",
     "width_label": "Width",
     "height_label": "Height"
+  },
+  "error_statuses": {
+    "0": {
+      "title": "Server is not available",
+      "message": "Please try again in a couple of minutes"
+    },
+    "500": {
+      "title": "Something went wrong",
+      "message": "Please try again later"
+    }
   }
 }
