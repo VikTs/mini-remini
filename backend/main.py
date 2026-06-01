@@ -35,11 +35,6 @@ api_router = APIRouter(prefix="/api")
 def health():
     return {"status": "ok"}
 
-@api_router.post("/upload")
-def upload_image(data: ImageData):
-    time.sleep(0.5)
-    return {"image": data.image}
-
 @api_router.post("/applyFilters")
 def apply_image_filters(data: ImageFiltersData):
     result = apply_filters(data.image, data.filters)

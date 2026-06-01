@@ -25,15 +25,14 @@ import { FilterGroupComponent } from '../filter-group/filter-group.component';
 })
 export class ImageFiltersComponent {
   private imageStore = inject(ImageStore);
+  private dialogService = inject(DialogService);
+  private fb = inject(FormBuilder);
 
   form!: FormGroup;
   isDisabled!: Signal<boolean>;
   filtersConfig = filtersConfig;
 
-  constructor(
-    private dialogService: DialogService,
-    private fb: FormBuilder
-  ) {
+  constructor() {
     this.initForm();
   }
 
