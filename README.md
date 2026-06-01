@@ -9,8 +9,7 @@ Mini-Remini is a web application for enhancing the image. It was inspired by [Re
 
 ## Features
 - Upload the image using file selection or drag and drop
-- Process the image with default filters
-- Choose the filters and apply them to the image:
+- Apply filters to the image:
   - Photo restoration using [GFPGAN](https://github.com/TencentARC/GFPGAN) AI model
   - Face beauty using [Insightface](https://www.insightface.ai/) and [OpenCV](https://pypi.org/project/opencv-python/)
   - Color correction
@@ -37,6 +36,6 @@ The live demo is available here: https://vikts.github.io/mini-remini/
 
 > **Note**: The online demo may currently be unavailable.
 > 
-> The backend is hosted on **Render (free tier)** which provides limited resources.
+> The backend is hosted on **Huggingface (free tier)** which provides limited resources.
 > Since the app performs **AI-based image processing**, some requests may take a long time to complete or timeout.
 > For the best results and functionality it`s recommended to **run the project locally**

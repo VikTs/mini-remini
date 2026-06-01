@@ -3,7 +3,6 @@ import { of, throwError } from 'rxjs';
 
 import { ImageStore } from './image-store';
 import { ImageApiService } from '../../features/services/image-api.service';
-import { ProcessStep } from './image-state.model';
 
 describe('ImageStore', () => {
     let store: InstanceType<typeof ImageStore>;
@@ -34,7 +33,6 @@ describe('ImageStore', () => {
 
         expect(store.originalImage()).toBeNull();
         expect(store.enhancedImage()).toBeNull();
-        expect(store.processStep()).toBe(ProcessStep.Initial);
         expect(store.filters()).toEqual(jasmine.any(Object));
 
     });
@@ -45,7 +43,6 @@ describe('ImageStore', () => {
 
         expect(store.originalImage()).toBe('image.jpg');
         expect(store.enhancedImage()).toBeNull();
-        expect(store.processStep()).toBe(ProcessStep.Initial);
         expect(store.filters()).toEqual(jasmine.any(Object));
 
     });
@@ -54,63 +51,11 @@ describe('ImageStore', () => {
 
         store.setOriginalImage('originalImage.jpg');
         store.setEnhancedImage('enhancedImage.jpg');
-        store.setProcessStep(ProcessStep.Done);
 
         store.reset();
 
         expect(store.originalImage()).toBeNull();
         expect(store.enhancedImage()).toBeNull();
-        expect(store.processStep()).toBe(ProcessStep.Initial);
-
-    });
-
-    it('should processImage successfully', (done) => {
-
-        const uploadedImage = 'uploadedImage.jpg';
-        const enhancedImage = 'enhancedImage.jpg';
-
-        imageApiServiceMock.upload.and.returnValue(of(uploadedImage));
-        imageApiServiceMock.applyFilters.and.returnValue(of(enhancedImage));
-
-        store.setOriginalImage('originalImage.jpg');
-
-        store.processImage().subscribe({
-            next: (result: string | null) => {
-
-                expect(result).toBe(enhancedImage);
-                expect(store.processStep()).toBe(ProcessStep.Done);
-                expect(store.enhancedImage()).toBe(enhancedImage);
-
-                done();
-            },
-            error: () => {
-                fail('Should not emit error');
-                done();
-            }
-        });
-
-    });
-
-    it('should processImage with an error', (done) => {
-
-        imageApiServiceMock.upload.and.returnValue(
-            throwError(() => new Error('Upload error'))
-        );
-
-        store.setOriginalImage('originalImage.jpg');
-
-        store.processImage().subscribe({
-            next: () => {
-                fail('Should not emit success');
-                done();
-            },
-            error: () => {
-
-                expect(store.processStep()).toBe(ProcessStep.Error);
-
-                done();
-            }
-        });
 
     });
 

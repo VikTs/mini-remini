@@ -2,18 +2,11 @@
 
 ## Architecture
 
-The project is built with Angular 21 and uses the modern architecture optimized for scalability and maintability. 
+- Angular is used for UI. 
 - State management
   - The app state is managed using [Signal Store](https://ngrx.io/guide/signals/signal-store)
 - Standalone components
   - The app is implemented entirely using [Angular standalone components](https://v17.angular.io/guide/standalone-components)
-  - Communication between components is handled via state management
-- Routing structure:
-  - ImageUploadComponent - displays file input and drag&drop upload area (appImageUpload directive)
-  - ImageProcessingComponent - shows steps of enhancing image pipelines, including error state
-  - ImageResultComponent - displays the enhanced image with before/after slider and filter controls. Route is reachable only if original and enhanced images are available, controlled by ImageGuard
-- API integration
-  - API calls are handled through ImageApiService
 - Internationalization
   - The app supports localization via [@ngx-translate](https://github.com/ngx-translate). The translation files are stored inside the public/locale folder
 - Styling
@@ -59,3 +52,11 @@ npm run test
 
 Runs unit tests via Karma and Jasmine
 
+## Deployment
+
+```bash
+npm run build
+npm run deploy
+```
+
+**Important**: Images should be referenced in the format: "images/..."  or "../../....".

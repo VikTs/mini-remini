@@ -13,7 +13,7 @@ describe('ImageUploadService', () => {
     let routerMock: jasmine.SpyObj<Router>;
 
     beforeEach(async () => {
-        imageStoreMock = jasmine.createSpyObj("ImageStore", ["setOriginalImage"]);
+        imageStoreMock = jasmine.createSpyObj("ImageStore", ["setOriginalImage", "setEnhancedImage"]);
         dialogServiceMock = jasmine.createSpyObj<DialogService>("DialogService", ["openErrorDialog"]);
         routerMock = jasmine.createSpyObj("Router", ["navigate"]);
 
@@ -43,14 +43,13 @@ describe('ImageUploadService', () => {
         expect(service).toBeTruthy();
     });
 
-    it('should call setOriginalImage and navigate to /processing', () => {
+    it('should call setOriginalImage', () => {
         const fileMock = new File([''], 'image.jpg');
         service.handleImageUpload(fileMock);
 
         expect(imageStoreMock.setOriginalImage).toHaveBeenCalledWith("base64");
         expect(ImageUtils.validateImageFile).toHaveBeenCalledWith(fileMock);
         expect(ImageUtils.convertFileToBase64).toHaveBeenCalledWith(fileMock);
-        expect(routerMock.navigate).toHaveBeenCalledWith(["/processing"]);
     });
 
     it('should open error dialog on invalid image upload', () => {
