@@ -16,23 +16,12 @@ export class ImageApiService {
 
     constructor(private http: HttpClient) { }
 
-    upload(image: string): Observable<string> {
-        return this.http.post<ImageResponse>(`${this.url}/upload`, { image }, {
-            headers: { 'Content-Type': 'application/json' }
-        }).pipe(
-            map((data) => data.image),
-            catchError(() => {
-                throw new Error('Error with uploading the image');
-            })
-        )
-    }
-
     applyFilters(image: string, filters: ImageFilters): Observable<string> {
         return this.http.post<ImageResponse>(`${this.url}/applyFilters`, { image, filters }, {
             headers: { 'Content-Type': 'application/json' }
         }).pipe(
             map((data) => data.image),
-            catchError(() => {
+            catchError((err) => {
                 throw new Error('Error with enhancing the image');
             })
         )

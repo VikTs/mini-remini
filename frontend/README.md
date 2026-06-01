@@ -10,7 +10,6 @@ The project is built with Angular 21 and uses the modern architecture optimized 
   - Communication between components is handled via state management
 - Routing structure:
   - ImageUploadComponent - displays file input and drag&drop upload area (appImageUpload directive)
-  - ImageProcessingComponent - shows steps of enhancing image pipelines, including error state
   - ImageResultComponent - displays the enhanced image with before/after slider and filter controls. Route is reachable only if original and enhanced images are available, controlled by ImageGuard
 - API integration
   - API calls are handled through ImageApiService

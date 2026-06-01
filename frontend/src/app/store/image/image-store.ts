@@ -5,18 +5,17 @@ import {
     withMethods,
     patchState
 } from '@ngrx/signals';
-import { delay, finalize, switchMap, tap, catchError, of, throwError } from 'rxjs';
+import { finalize, tap, throwError } from 'rxjs';
 
-import { defaultFilters } from '../../features/models/image-filters.constant';
+import { initialFilters } from '../../features/models/image-filters.constant';
 import { ImageFilters } from '../../features/models/image-filters.model';
-import { ImageState, ProcessStep } from './image-state.model';
+import { ImageState } from './image-state.model';
 import { ImageApiService } from '../../features/services/image-api.service';
 
 const initialState: ImageState = {
     originalImage: null,
     enhancedImage: null,
-    processStep: ProcessStep.Initial,
-    filters: { ...defaultFilters },
+    filters: { ...initialFilters },
     isApplyingFilters: false
 };
 
@@ -31,17 +30,12 @@ export const ImageStore = signalStore(
             patchState(store, {
                 originalImage,
                 enhancedImage: null,
-                processStep: ProcessStep.Initial,
-                filters: { ...defaultFilters }
+                filters: { ...initialFilters }
             });
         },
 
         setEnhancedImage(enhancedImage: string | null) {
             patchState(store, { enhancedImage });
-        },
-
-        setProcessStep(processStep: ProcessStep) {
-            patchState(store, { processStep });
         },
 
         setFilters(filters: ImageFilters) {
@@ -50,41 +44,6 @@ export const ImageStore = signalStore(
 
         setIsApplyingFilters(isApplyingFilters: boolean) {
             patchState(store, { isApplyingFilters });
-        },
-
-        processImage() {
-            const image = store.originalImage();
-
-            if (!image) {
-                return throwError(() => new Error('No image found'));
-            }
-
-            patchState(store, { processStep: ProcessStep.Uploading });
-
-            return api.upload(image).pipe(
-
-                switchMap((image) => {
-                    const filters = store.filters();
-
-                    patchState(store, { processStep: ProcessStep.Enhancing });
-
-                    return api.applyFilters(image, filters);
-                }),
-
-                tap((image) => {
-                    patchState(store, {
-                        enhancedImage: image,
-                        processStep: ProcessStep.Done
-                    });
-                }),
-
-                delay(500),
-
-                catchError((error) => {
-                    patchState(store, { processStep: ProcessStep.Error });
-                    return throwError(() => error);
-                })
-            );
         },
 
         applyFilters(filters: ImageFilters) {
@@ -117,8 +76,7 @@ export const ImageStore = signalStore(
             patchState(store, {
                 originalImage: null,
                 enhancedImage: null,
-                processStep: ProcessStep.Initial,
-                filters: { ...defaultFilters },
+                filters: { ...initialFilters },
                 isApplyingFilters: false
             });
         }

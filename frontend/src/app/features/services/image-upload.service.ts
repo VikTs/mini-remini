@@ -27,7 +27,8 @@ export class ImageUploadService {
                 .subscribe({
                     next: (base64) => {
                         this.imageStore.setOriginalImage(base64);
-                        this.router.navigate(["/processing"]);
+                        this.imageStore.setEnhancedImage(base64);
+                        this.router.navigate(["/result"]);
                     }
                 });
         } else {

@@ -19,7 +19,7 @@ describe('ImageFiltersComponent', () => {
     }>;
     let dialogServiceMock: jasmine.SpyObj<DialogService>;
 
-    const defaultFilters = {
+    const initialFilters = {
         sepia: 0,
         grayscale: 0,
         brightness: 1,
@@ -28,7 +28,7 @@ describe('ImageFiltersComponent', () => {
 
     beforeEach(async () => {
         imageStoreMock = {
-            filters: jasmine.createSpy('filters').and.returnValue(defaultFilters),
+            filters: jasmine.createSpy('filters').and.returnValue(initialFilters),
             isApplyingFilters: jasmine.createSpy('isApplyingFilters').and.returnValue(false),
             enhancedImage: jasmine.createSpy('enhancedImage').and.returnValue(null),
             applyFilters: jasmine.createSpy('applyFilters')
@@ -56,7 +56,7 @@ describe('ImageFiltersComponent', () => {
 
     it('should create form', () => {
         expect(component.form).toBeTruthy();
-        expect(Object.keys(component.form.controls)).toEqual(Object.keys(defaultFilters));
+        expect(Object.keys(component.form.controls)).toEqual(Object.keys(initialFilters));
     });
 
     it('should call applyFilters when apply button is clicked', () => {

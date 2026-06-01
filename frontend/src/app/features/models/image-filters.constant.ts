@@ -1,8 +1,8 @@
 import { FilterGroupConfig, ImageFilters } from "./image-filters.model";
 
-export const defaultFilters: ImageFilters = {
-  upscale: 2,
-  faceBeauty: true,
+export const initialFilters: ImageFilters = {
+  upscale: 1,
+  faceBeauty: false,
   restorePhoto: false,
   colorCorrection: "none",
 }
