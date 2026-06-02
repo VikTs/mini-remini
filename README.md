@@ -10,7 +10,8 @@ Mini-Remini is a web application for enhancing the image. It was inspired by [Re
 ## Features
 - Upload the image using file selection or drag and drop
 - Apply filters to the image:
-  - Blured face restoration using [GFPGAN](https://github.com/TencentARC/GFPGAN) AI model
+  - Blured photo restoration using [Real ESRGAN](https://realesrgan.com) AI model
+  - Face enhancement using [GFPGAN](https://github.com/TencentARC/GFPGAN) AI model
   - Color correction
 - View the filtered image in the before/after slider
 - Download the enhanced image
