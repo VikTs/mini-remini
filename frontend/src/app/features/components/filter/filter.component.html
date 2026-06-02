@@ -18,7 +18,8 @@
   @case ('button') {
   @if (form.get(filter.id) && filter.values) {
   <div>
-    <p class="filter-name text">{{filter.name | translate}}</p>
+    <p class="filter-name text">{{filter.name | translate}}
+    </p>
     <div class="filter-button-group">
       @for (value of filter.values; track value) {
       <label class="filter-button">
@@ -39,6 +40,22 @@
     </p>
     <mat-slide-toggle [formControlName]="filter.id">
     </mat-slide-toggle>
+  </div>
+  }
+  }
+  @case ('checkbox') {
+  @if (form.get(filter.id)) {
+  <div class="filter-checkbox">
+    <p class="filter-name text filter-name-with-icon">
+      {{ filter.name | translate }}
+      @if(filter.tooltip) {
+      <mat-icon class="filter-tip-icon" [matTooltip]="(filter.tooltip) | translate" matTooltipPosition="above">
+        info
+      </mat-icon>
+      }
+    </p>
+    <mat-checkbox [formControlName]="filter.id">
+    </mat-checkbox>
   </div>
   }
   }

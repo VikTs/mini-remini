@@ -4,7 +4,7 @@
 
 App is build with Python 3.10
 
-For enhancing the image [GFPGAN](https://github.com/TencentARC/GFPGAN) and [Insightface](https://www.insightface.ai/) models are used. 
+For enhancing the image [GFPGAN](https://github.com/TencentARC/GFPGAN) model is used. 
 
 GFPGAN model is stored locally - inside pretrained_models folder. 
 

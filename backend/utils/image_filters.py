@@ -2,9 +2,9 @@ import numpy as np
 import cv2
 from PIL import ImageEnhance, Image
 
-from utils.photo_restore import restore_photo
+from utils.photo_restore import restore_face
 from utils.base64 import decode_base64_to_img, encode_img_to_base64
-from utils.face_filters import apply_face_beauty
+from utils.realesrgan_upscaler import upscale_image
 
 def apply_filters(image_base64: str, filters: dict):
     image_pil = decode_base64_to_img(image_base64)
@@ -12,12 +12,13 @@ def apply_filters(image_base64: str, filters: dict):
     if image_pil is None:
         return image_base64
     
-    if filters["restorePhoto"] is True:
-        image_pil = restore_photo(image_pil, filters)
+    if filters["enhanceFace"] is True:
+        upscale = 4 if filters["faceHightResolution"] is True else 2
+        image_pil = restore_face(image_pil, upscale)
 
-    if filters["faceBeauty"] is True:
-        image_np = apply_face_beauty(image_pil)
-        image_pil = Image.fromarray(image_np)
+    if filters["restore"] is True:
+        upscale = 4 if filters["restoreHightResolution"] is True else 2
+        image_pil = upscale_image(image_pil, upscale)
 
     if "colorCorrection" in filters:
         match filters["colorCorrection"]:

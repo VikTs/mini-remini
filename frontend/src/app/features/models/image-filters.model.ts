@@ -1,10 +1,11 @@
 export type ImageFilters = Record<string, number | string | boolean>;
-export type InputType = "slider" | 'button' | 'toggle';
+export type InputType = "slider" | 'button' | 'toggle' | "checkbox";
 
 export interface FilterConfig {
   id: string,
   name: string,
   type: InputType,
+  tooltip?: string,
   minValue?: number,
   maxValue?: number,
   step?: number,

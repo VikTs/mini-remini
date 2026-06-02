@@ -3,19 +3,10 @@
 ## Architecture
 
 - Angular is used for UI. 
-- State management
-  - The app state is managed using [Signal Store](https://ngrx.io/guide/signals/signal-store)
-- Standalone components
-  - The app is implemented entirely using [Angular standalone components](https://v17.angular.io/guide/standalone-components)
-- Internationalization
-  - The app supports localization via [@ngx-translate](https://github.com/ngx-translate). The translation files are stored inside the public/locale folder
-- Styling
-  - Global styles are defined in src/styles.scss
-  - The app uses [Angular Material](https://material.angular.dev/) for UI components
-- Code quality
-  - Eslint is configured for static code analysis
-  - Testing is implemented using [Karma](https://karma-runner.github.io) and [Jasmine](https://jasmine.github.io)
-
+- State management: [Signal Store](https://ngrx.io/guide/signals/signal-store)
+- Internationalization: [@ngx-translate](https://github.com/ngx-translate) (inside the public/locale folder)
+- Styling: [Angular Material](https://material.angular.dev/)
+- Testing: [Karma](https://karma-runner.github.io) and [Jasmine](https://jasmine.github.io)
 
 ## Getting started
 
@@ -32,9 +23,7 @@ npm install
 npm run start
 ```
 
-
 Visit `http://localhost:4200/`. 
-The app will automatically reload on changes.
 
 ### Building for production
 
@@ -49,8 +38,6 @@ The build will be located in the `dist/` directory.
 ```bash
 npm run test
 ```
-
-Runs unit tests via Karma and Jasmine
 
 ## Deployment
 

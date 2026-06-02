@@ -37,19 +37,27 @@
           "cinematic": "Cinematic"
         }
       },
-      "face_beauty": "Face beauty",
-      "restore_photo": "Restore photo",
-      "upscale": "Resolution"
+      "enhance_face": "Enhance face",
+      "faceHightResolution": "Hight resolution",
+      "restore": "Restore photo",
+      "restoreHightResolution": "Hight resolution"
     },
     "groups": {
-      "enhancement": {
-        "name": "Enhancement",
-        "description": "Enhance the image"
+      "restoration": {
+        "name": "Restoration",
+        "description": "Restore the blurry photos"
+      },
+      "face_enhancement": {
+        "name": "Face enhancement",
+        "description": "Enhance the face details"
       },
       "lighting": {
         "name": "Color Tone",
         "description": "Regulate hue and light"
       }
+    },
+    "tooltips": {
+      "slowProcessing": "This option increases processing time"
     }
   },
   "result": {

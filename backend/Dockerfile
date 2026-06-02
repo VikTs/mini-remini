@@ -26,17 +26,18 @@ import urllib.request; \
 from pathlib import Path; \
 model_dir = Path('pretrained_models'); \
 model_dir.mkdir(parents=True, exist_ok=True); \
-model_path = model_dir / 'GFPGANv1.3.pth'; \
+\
 print('Downloading GFPGAN model...'); \
-urllib.request.urlretrieve('https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.3.pth', model_path); \
+urllib.request.urlretrieve('https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.3.pth', model_dir / 'GFPGANv1.3.pth'); \
+\
+print('Downloading Real-ESRGANx2 model...'); \
+urllib.request.urlretrieve('https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.1/RealESRGAN_x2plus.pth', model_dir / 'RealESRGAN_x2plus.pth'); \
+\
+print('Downloading Real-ESRGAN x4 model...'); \
+urllib.request.urlretrieve('https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth', model_dir / 'RealESRGAN_x4plus.pth'); \
+\
 print('Done.')"
 
-RUN python -c "\
-import insightface; \
-from insightface.app import FaceAnalysis; \
-app = FaceAnalysis(name='buffalo_l'); \
-app.prepare(ctx_id=-1); \
-print('Insightface model ready.')"
 
 EXPOSE 8000
 

@@ -1,36 +1,47 @@
 import { FilterGroupConfig, ImageFilters } from "./image-filters.model";
 
 export const initialFilters: ImageFilters = {
-  upscale: 1,
-  faceBeauty: false,
-  restorePhoto: false,
+  enhanceFace: false,
+  faceHightResolution: false,
+  restore: false,
+  restoreHightResolution: false,
   colorCorrection: "none",
 }
 
 export const filtersConfig: FilterGroupConfig[] = [
   {
-    name: "filtersPanel.groups.enhancement.name",
-    description: "filtersPanel.groups.enhancement.description",
-    icon: "star_half",
+    name: "filtersPanel.groups.restoration.name",
+    description: "filtersPanel.groups.restoration.description",
+    icon: "auto_fix_high",
     filters: [
       {
-        id: "faceBeauty",
+        id: "restore",
         type: "toggle",
-        name: "filtersPanel.filters.face_beauty",
+        name: "filtersPanel.filters.restore",
       },
       {
-        id: "restorePhoto",
+        id: "restoreHightResolution",
+        type: "checkbox",
+        tooltip: "filtersPanel.tooltips.slowProcessing",
+        name: "filtersPanel.filters.restoreHightResolution",
+      }
+    ]
+  },
+  {
+    name: "filtersPanel.groups.face_enhancement.name",
+    description: "filtersPanel.groups.face_enhancement.description",
+    icon: "auto_awesome",
+    filters: [
+      {
+        id: "enhanceFace",
         type: "toggle",
-        name: "filtersPanel.filters.restore_photo",
+        name: "filtersPanel.filters.enhance_face",
       },
       {
-        id: "upscale",
-        minValue: 1,
-        maxValue: 4,
-        step: 1,
-        type: "slider",
-        name: "filtersPanel.filters.upscale",
-        valueBuilder: (value: number) => `${value.toFixed(0)}x`
+        id: "faceHightResolution",
+        type: "checkbox",
+        tooltip: "filtersPanel.tooltips.slowProcessing",
+        name: "filtersPanel.filters.faceHightResolution",
       }
     ]
   },
