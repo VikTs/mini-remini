@@ -2,7 +2,9 @@ import { FilterGroupConfig, ImageFilters } from "./image-filters.model";
 
 export const initialFilters: ImageFilters = {
   upscale: 1,
-  restoreFace: false,
+  enhanceFace: false,
+  restore: false,
+  restoreHightResolution: false,
   colorCorrection: "none",
 }
 

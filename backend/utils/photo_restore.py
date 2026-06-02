@@ -5,7 +5,7 @@ import cv2
 import torch
 import gc
 
-from config import MODEL_LOCAL_PATH
+from config import GFPGAN_LOCAL_PATH
 
 _gfpgan_model = None
 _gfpgan_upscale = None 
@@ -15,7 +15,7 @@ def _get_gfpgan(upscale: int):
     if _gfpgan_model is None or _gfpgan_upscale != upscale:
         from gfpgan import GFPGANer
         _gfpgan_model = GFPGANer(
-            model_path=str(MODEL_LOCAL_PATH),
+            model_path=str(GFPGAN_LOCAL_PATH),
             channel_multiplier=2,
             upscale=upscale,
             bg_upsampler=None
@@ -23,8 +23,7 @@ def _get_gfpgan(upscale: int):
         _gfpgan_upscale = upscale
     return _gfpgan_model
 
-def restore_face(image_pil: Image, filters: Dict[str, float]):
-    upscale = filters.get("upscale", 2)
+def restore_face(image_pil: Image, upscale: int):
     model = _get_gfpgan(upscale)
 
     input_np = np.array(image_pil)[:, :, ::-1]
