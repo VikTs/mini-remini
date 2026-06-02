@@ -23,7 +23,7 @@ def _get_gfpgan(upscale: int):
         _gfpgan_upscale = upscale
     return _gfpgan_model
 
-def restore_photo(image_pil: Image, filters: Dict[str, float]):
+def restore_face(image_pil: Image, filters: Dict[str, float]):
     upscale = filters.get("upscale", 2)
     model = _get_gfpgan(upscale)
 

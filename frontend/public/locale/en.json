@@ -38,13 +38,13 @@
         }
       },
       "face_beauty": "Face beauty",
-      "restore_photo": "Restore photo",
+      "restore_face": "Restore face",
       "upscale": "Resolution"
     },
     "groups": {
-      "enhancement": {
-        "name": "Enhancement",
-        "description": "Enhance the image"
+      "face_enhancement": {
+        "name": "Face enhancement",
+        "description": "Restore and enhance the face"
       },
       "lighting": {
         "name": "Color Tone",

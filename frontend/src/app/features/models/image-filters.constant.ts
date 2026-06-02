@@ -3,15 +3,15 @@ import { FilterGroupConfig, ImageFilters } from "./image-filters.model";
 export const initialFilters: ImageFilters = {
   upscale: 1,
   faceBeauty: false,
-  restorePhoto: false,
+  restoreFace: false,
   colorCorrection: "none",
 }
 
 export const filtersConfig: FilterGroupConfig[] = [
   {
-    name: "filtersPanel.groups.enhancement.name",
-    description: "filtersPanel.groups.enhancement.description",
-    icon: "star_half",
+    name: "filtersPanel.groups.face_enhancement.name",
+    description: "filtersPanel.groups.face_enhancement.description",
+    icon: "auto_awesome",
     filters: [
       {
         id: "faceBeauty",
@@ -19,9 +19,9 @@ export const filtersConfig: FilterGroupConfig[] = [
         name: "filtersPanel.filters.face_beauty",
       },
       {
-        id: "restorePhoto",
+        id: "restoreFace",
         type: "toggle",
-        name: "filtersPanel.filters.restore_photo",
+        name: "filtersPanel.filters.restore_face",
       },
       {
         id: "upscale",
