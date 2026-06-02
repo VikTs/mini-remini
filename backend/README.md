@@ -4,9 +4,7 @@
 
 App is build with Python 3.10
 
-For enhancing the image [GFPGAN](https://github.com/TencentARC/GFPGAN) model is used. 
-
-GFPGAN model is stored locally - inside pretrained_models folder. 
+For enhancing the image [GFPGAN](https://github.com/TencentARC/GFPGAN) and [Real ESRGAN](https://realesrgan.com) models are used. They are stored locally - inside pretrained_models folder.
 
 ## Getting started
 
