@@ -4,6 +4,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { FilterConfig } from '../../models/image-filters.model';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-filter',
@@ -11,6 +12,7 @@ import { FilterConfig } from '../../models/image-filters.model';
     TranslateModule,
     MatSliderModule,
     MatSlideToggleModule,
+    MatCheckboxModule,
     ReactiveFormsModule
 ],
   templateUrl: './filter.component.html',

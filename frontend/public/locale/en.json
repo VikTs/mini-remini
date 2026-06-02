@@ -37,13 +37,20 @@
           "cinematic": "Cinematic"
         }
       },
-      "restore_face": "Restore face",
-      "upscale": "Resolution"
+      "enhance_face": "Enhance face",
+      "faceHightResolution": "Hight resolution",
+      "restore": "Restore photo",
+      "restoreHightResolution": "Hight resolution"
+
     },
     "groups": {
+      "restoration": {
+        "name": "Restoration",
+        "description": "Restore the blurry photos"
+      },
       "face_enhancement": {
         "name": "Face enhancement",
-        "description": "Restore and enhance the face"
+        "description": "Enhance the face details"
       },
       "lighting": {
         "name": "Color Tone",

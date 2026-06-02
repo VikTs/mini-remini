@@ -13,7 +13,7 @@ def apply_filters(image_base64: str, filters: dict):
         return image_base64
     
     if filters["enhanceFace"] is True:
-        upscale = filters.get("upscale", 2)
+        upscale = 4 if filters["faceHightResolution"] is True else 2
         image_pil = restore_face(image_pil, upscale)
 
     if filters["restore"] is True:

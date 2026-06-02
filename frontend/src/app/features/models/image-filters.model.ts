@@ -1,5 +1,5 @@
 export type ImageFilters = Record<string, number | string | boolean>;
-export type InputType = "slider" | 'button' | 'toggle';
+export type InputType = "slider" | 'button' | 'toggle' | "checkbox";
 
 export interface FilterConfig {
   id: string,
