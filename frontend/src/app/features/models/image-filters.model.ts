@@ -5,6 +5,7 @@ export interface FilterConfig {
   id: string,
   name: string,
   type: InputType,
+  tooltip?: string,
   minValue?: number,
   maxValue?: number,
   step?: number,

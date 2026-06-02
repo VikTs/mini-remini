@@ -22,6 +22,7 @@ export const filtersConfig: FilterGroupConfig[] = [
       {
         id: "restoreHightResolution",
         type: "checkbox",
+        tooltip: "filtersPanel.tooltips.slowProcessing",
         name: "filtersPanel.filters.restoreHightResolution",
       }
     ]
@@ -39,6 +40,7 @@ export const filtersConfig: FilterGroupConfig[] = [
       {
         id: "faceHightResolution",
         type: "checkbox",
+        tooltip: "filtersPanel.tooltips.slowProcessing",
         name: "filtersPanel.filters.faceHightResolution",
       }
     ]

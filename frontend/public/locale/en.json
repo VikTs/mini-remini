@@ -41,7 +41,6 @@
       "faceHightResolution": "Hight resolution",
       "restore": "Restore photo",
       "restoreHightResolution": "Hight resolution"
-
     },
     "groups": {
       "restoration": {
@@ -56,6 +55,9 @@
         "name": "Color Tone",
         "description": "Regulate hue and light"
       }
+    },
+    "tooltips": {
+      "slowProcessing": "This option increases processing time"
     }
   },
   "result": {

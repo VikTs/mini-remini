@@ -46,6 +46,26 @@
     }
 }
 
+.filter-label-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.filter-name-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.filter-tip-icon {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    color: #999;
+    cursor: help;
+}
+
 .filter-toggle,
 .filter-checkbox {
     display: flex;
