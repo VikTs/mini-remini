@@ -8,9 +8,7 @@ import time
 
 def _warmup_models():
     try:
-        from utils.face_filters import _get_face_app
         from utils.photo_restore import _get_gfpgan
-        _get_face_app()
         _get_gfpgan(upscale=2)
     except Exception as e:
         print(f"Warmup failed: {e}")

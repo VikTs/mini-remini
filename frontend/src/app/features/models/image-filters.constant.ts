@@ -2,7 +2,6 @@ import { FilterGroupConfig, ImageFilters } from "./image-filters.model";
 
 export const initialFilters: ImageFilters = {
   upscale: 1,
-  faceBeauty: false,
   restoreFace: false,
   colorCorrection: "none",
 }
@@ -13,11 +12,6 @@ export const filtersConfig: FilterGroupConfig[] = [
     description: "filtersPanel.groups.face_enhancement.description",
     icon: "auto_awesome",
     filters: [
-      {
-        id: "faceBeauty",
-        type: "toggle",
-        name: "filtersPanel.filters.face_beauty",
-      },
       {
         id: "restoreFace",
         type: "toggle",

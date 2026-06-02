@@ -4,7 +4,6 @@ from PIL import ImageEnhance, Image
 
 from utils.photo_restore import restore_face
 from utils.base64 import decode_base64_to_img, encode_img_to_base64
-from utils.face_filters import apply_face_beauty
 
 def apply_filters(image_base64: str, filters: dict):
     image_pil = decode_base64_to_img(image_base64)
@@ -14,10 +13,6 @@ def apply_filters(image_base64: str, filters: dict):
     
     if filters["restoreFace"] is True:
         image_pil = restore_face(image_pil, filters)
-
-    if filters["faceBeauty"] is True:
-        image_np = apply_face_beauty(image_pil)
-        image_pil = Image.fromarray(image_np)
 
     if "colorCorrection" in filters:
         match filters["colorCorrection"]:
