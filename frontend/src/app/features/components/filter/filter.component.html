@@ -45,8 +45,10 @@
   @case ('checkbox') {
   @if (form.get(filter.id)) {
   <div class="filter-checkbox">
-    <mat-checkbox [formControlName]="filter.id">
+    <p class="filter-name text">
       {{ filter.name | translate }}
+    </p>
+    <mat-checkbox [formControlName]="filter.id">
     </mat-checkbox>
   </div>
   }

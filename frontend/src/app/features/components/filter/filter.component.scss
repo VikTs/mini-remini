@@ -42,14 +42,16 @@
     border-radius: 4px;
 
     &.active {
-        border-color: #fdfdfd;
+        border-color: #b5b5b5;
     }
 }
 
-.filter-toggle {
+.filter-toggle,
+.filter-checkbox {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     margin: 15px 0;
 }
 
