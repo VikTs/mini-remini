@@ -13,7 +13,7 @@
             <mat-card class="image-upload-card" (click)="imgInput.click();">
                 <mat-card-content class="image-upload-card-content">
                     <input type="file" accept="image/*" #imgInput style="display: none;" (change)="onUploadImage($event)" />
-                    <button class="btn image-upload-btn">
+                    <button class="btn image-upload-btn primary">
                         <mat-icon class="icon">add_photo_alternate</mat-icon> {{"upload.button_label" | translate}}
                     </button>
                     <p class="text">{{"upload.drag_info" | translate}} </p>
